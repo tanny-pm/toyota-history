@@ -1,19 +1,15 @@
+import { buildLineageView } from './lineage/lineageModel'
+import { Header } from './components/Header'
+import { GenealogySection } from './components/GenealogySection'
+import { CompareSection } from './components/CompareSection'
+
 export default function App() {
+  const view = buildLineageView()
   return (
-    <main
-      style={{
-        fontFamily: 'system-ui, sans-serif',
-        display: 'flex',
-        minHeight: '100vh',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '0.5rem',
-        color: '#333',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>トヨタ車 系譜ビューア</h1>
-      <p style={{ margin: 0, color: '#888' }}>準備中 — セットアップ完了</p>
-    </main>
+    <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px 96px' }}>
+      <Header />
+      <GenealogySection view={view} />
+      <CompareSection view={view} />
+    </div>
   )
 }
