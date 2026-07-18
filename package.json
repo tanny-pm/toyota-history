@@ -1,0 +1,24 @@
+{
+  "name": "toyota-history",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vp build",
+    "preview": "vp preview",
+    "check": "vp check"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "@voidzero-dev/vite-plus-core": "^0.2.5",
+    "typescript": "^5.7.0",
+    "vite-plus": "^0.2.5"
+  }
+}
