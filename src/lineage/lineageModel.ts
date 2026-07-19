@@ -1,5 +1,10 @@
-// 「系譜ビューア.dc.html」(Claude Design) の renderVals() を TypeScript へ忠実移植。
-// レイアウト計算・ダミーデータ・スタイル文字列はデザインモックのものをそのまま再現している。
+// 「系譜ビューア.dc.html」(Claude Design) の renderVals() を TypeScript へ移植したもの。
+// データはベタ書きせず data/*.json（Genealogy / Lineup / Specs）を引数に受け取り、
+// レイアウト計算（タイムライン座標・SVG コネクタ・grid 列幅・諸元の最大/最小ハイライト）
+// と完成済みインライン CSS 文字列の生成だけを担う純粋・決定的な関数。
+// スタイル文字列はデザインモックのものをそのまま再現している。
+
+import type { Genealogy, Lineup, PriceRange, SpecColumn, Specs } from "../data/types";
 
 export interface LabelItem {
   name: string;
@@ -77,17 +82,7 @@ export interface LineageView {
   headVehStyle: string;
 }
 
-interface RowRaw {
-  label: string;
-  sub: string;
-  y: number;
-  kind: "active" | "discontinued";
-  current?: number;
-  branchYear?: number;
-  parentY?: number;
-  gens: number[];
-}
-
+// tokens.css の @theme と同じ色。色を変える場合は両方を更新すること。
 const RED = "#EB0A1E",
   GREY9 = "#1A1B1C",
   GREY6 = "#58595B",
@@ -97,75 +92,47 @@ const RED = "#EB0A1E",
   GREY1 = "#ECECED",
   GREY05 = "#F5F5F6";
 
-export function buildLineageView(): LineageView {
-  // ---- timeline geometry ----
-  const Y0 = 1966,
-    Y1 = 2026,
+// 数値の表示整形（桁区切り。小数は保持）。例: 2850 → "2,850" / 22.4 → "22.4"
+const fmtNum = (n: number) => n.toLocaleString("ja-JP");
+
+export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Specs): LineageView {
+  const nameplates = genealogy.nameplates;
+
+  // ---- 縦位置レイアウト ----
+  // 派生（derivativeOf）は配列上で親の直上に置く慣習。
+  // 「派生→その親」の間は詰め、系統グループの境界には余白を入れる。
+  const NODE_H = 60,
+    CEN = 30, // ノード上端からの中心オフセット
+    START = 46, // 先頭ノードの top
+    TIGHT = 72, // 派生とその親の縦間隔（詰め）
+    LOOSE = 96; // 系統グループ間の縦間隔（余白）
+
+  const ys: number[] = [];
+  nameplates.forEach((np, i) => {
+    if (i === 0) {
+      ys.push(START);
+      return;
+    }
+    const prev = nameplates[i - 1];
+    // 直前が派生で、その親が今の行なら詰める（派生は親の直上）
+    const isParentOfPrev = prev.derivativeOf != null && prev.derivativeOf === np.label;
+    ys.push(ys[i - 1] + (isParentOfPrev ? TIGHT : LOOSE));
+  });
+  const yByLabel = new Map(nameplates.map((np, i) => [np.label, ys[i]]));
+  const trackH = ys[ys.length - 1] + NODE_H + 34;
+
+  // ---- タイムライン幾何 ----
+  const allYears = nameplates.flatMap((np) => np.generations);
+  const Y0 = Math.min(...allYears),
+    Y1 = 2026, // 右端＝「現在」
     PAD = 60,
     PX = 30;
   const xFor = (y: number) => PAD + (y - Y0) * PX;
   const trackW = xFor(Y1) + 70;
   const AXIS = 34,
-    NODE_W = 66,
-    NODE_H = 60,
-    CEN = 30; // node center offset from top
+    NODE_W = 66;
 
-  // rows: derivative rows sit directly above their parent
-  const rowsRaw: RowRaw[] = [
-    {
-      label: "レビン",
-      sub: "派生 / カローラ",
-      y: 46,
-      kind: "discontinued",
-      branchYear: 1972,
-      parentY: 118,
-      gens: [1972, 1983, 1991, 1998],
-    },
-    {
-      label: "カローラ",
-      sub: "1966–現行",
-      y: 118,
-      kind: "active",
-      current: 2019,
-      gens: [1966, 1972, 1979, 1987, 2000, 2012, 2019],
-    },
-    {
-      label: "クラウン",
-      sub: "1966–現行",
-      y: 214,
-      kind: "active",
-      current: 2022,
-      gens: [1967, 1974, 1983, 1991, 2003, 2018, 2022],
-    },
-    {
-      label: "プラド",
-      sub: "派生 / ランクル",
-      y: 300,
-      kind: "active",
-      current: 2020,
-      branchYear: 1990,
-      parentY: 372,
-      gens: [1990, 1996, 2002, 2009, 2020],
-    },
-    {
-      label: "ランドクルーザー",
-      sub: "1966–現行",
-      y: 372,
-      kind: "active",
-      current: 2021,
-      gens: [1966, 1980, 1990, 1998, 2007, 2021],
-    },
-    {
-      label: "セリカ",
-      sub: "1970–2006 廃番",
-      y: 468,
-      kind: "discontinued",
-      gens: [1970, 1977, 1985, 1994, 1999, 2006],
-    },
-  ];
-  const trackH = 468 + NODE_H + 34;
-
-  // ticks — one per year
+  // ---- 目盛り（1年ごと） ----
   const ticks: Tick[] = [];
   for (let y = Y0; y <= Y1; y++) {
     const x = xFor(y);
@@ -178,24 +145,25 @@ export function buildLineageView(): LineageView {
     });
   }
 
-  // labels column
+  // ---- ネームプレート列（固定） ----
   const labelColStyle = `position:relative;width:132px;flex:none;background:${GREY05};border-right:1px solid ${GREY2};height:${trackH}px`;
-  const labels: LabelItem[] = rowsRaw.map((r) => ({
-    name: r.label,
-    sub: r.sub,
-    color: r.kind === "discontinued" ? GREY4 : GREY9,
+  const labels: LabelItem[] = nameplates.map((np, i) => ({
+    name: np.label,
+    sub: np.sub,
+    color: np.status === "discontinued" ? GREY4 : GREY9,
     subStyle: `display:block;margin-top:3px;font-size:10px;font-weight:500;color:${GREY4}`,
-    style: `position:absolute;top:${r.y + 6}px;left:0;width:132px;padding:0 14px;height:${NODE_H}px;display:flex;flex-direction:column;justify-content:center`,
+    style: `position:absolute;top:${ys[i] + 6}px;left:0;width:132px;padding:0 14px;height:${NODE_H}px;display:flex;flex-direction:column;justify-content:center`,
   }));
 
-  // nodes
+  // ---- ノード ----
   const nodes: TreeNode[] = [];
-  rowsRaw.forEach((r) => {
-    r.gens.forEach((year, i) => {
+  nameplates.forEach((np, i) => {
+    const top = ys[i];
+    np.generations.forEach((year, gi) => {
       const x = xFor(year);
-      const isCurrent = r.current === year;
+      const isCurrent = np.status === "active" && np.currentYear === year;
       let border: string, gc: string, sil: string, thumbBg: string, shadow: string;
-      if (r.kind === "discontinued") {
+      if (np.status === "discontinued") {
         border = `1.5px solid ${GREY2}`;
         gc = GREY4;
         sil = GREY3;
@@ -215,13 +183,13 @@ export function buildLineageView(): LineageView {
         shadow = "0 1px 3px rgba(0,0,0,0.07)";
       }
       nodes.push({
-        genLabel: i + 1 + "代目",
+        genLabel: gi + 1 + "代目",
         isCurrent,
         silColor: sil,
         thumbStyle: `width:100%;height:26px;background:${thumbBg};border-radius:5px;display:flex;align-items:center;justify-content:center;margin-bottom:5px`,
         genStyle: `font-size:10px;font-weight:700;color:${gc};letter-spacing:0.01em;line-height:1`,
         style:
-          `position:absolute;top:${r.y}px;left:${x - NODE_W / 2}px;width:${NODE_W}px;height:${NODE_H}px;box-sizing:border-box;padding:6px 6px 7px;` +
+          `position:absolute;top:${top}px;left:${x - NODE_W / 2}px;width:${NODE_W}px;height:${NODE_H}px;box-sizing:border-box;padding:6px 6px 7px;` +
           `display:flex;flex-direction:column;align-items:center;justify-content:center;` +
           `background:#fff;border:${border};border-radius:11px;z-index:2;box-shadow:${shadow};` +
           `transition:transform var(--duration-base) var(--ease-standard),box-shadow var(--duration-base) var(--ease-standard);cursor:default`,
@@ -229,12 +197,12 @@ export function buildLineageView(): LineageView {
     });
   });
 
-  // connectors
+  // ---- コネクタ ----
   const connectors: Connector[] = [];
-  rowsRaw.forEach((r) => {
-    const xs = r.gens.map(xFor);
-    const y = r.y + CEN;
-    const laneCol = r.kind === "discontinued" ? GREY2 : GREY4;
+  nameplates.forEach((np, i) => {
+    const xs = np.generations.map(xFor);
+    const y = ys[i] + CEN;
+    const laneCol = np.status === "discontinued" ? GREY2 : GREY4;
     connectors.push({
       kind: "line",
       x1: xs[0],
@@ -245,9 +213,11 @@ export function buildLineageView(): LineageView {
       strokeWidth: 3,
       strokeLinecap: "round",
     });
-    if (r.branchYear != null && r.parentY != null) {
-      const bx = xFor(r.branchYear);
-      const py = r.parentY + CEN;
+    // 派生系統: 親レーンから枝分かれ年で分岐する破線＋分岐点
+    const parentY = np.derivativeOf != null ? yByLabel.get(np.derivativeOf) : undefined;
+    if (np.branchYear != null && parentY != null) {
+      const bx = xFor(np.branchYear);
+      const py = parentY + CEN;
       connectors.push({
         kind: "path",
         d: `M ${bx} ${py} L ${bx} ${y}`,
@@ -261,153 +231,78 @@ export function buildLineageView(): LineageView {
 
   const trackStyle = `position:relative;width:${trackW}px;height:${trackH}px;background:#fff`;
 
-  // ---- comparison table (vehicles = rows, specs = columns) ----
-  const specCols: SpecCol[] = [
-    { label: "ボディタイプ" },
-    { label: "発売年・世代" },
-    { label: "全長×全幅×全高 (mm)" },
-    { label: "ホイールベース (mm)", num: true },
-    { label: "車両重量 (kg)", num: true },
-    { label: "エンジン・排気量" },
-    { label: "最高出力", num: true },
-    { label: "駆動方式" },
-    { label: "乗車定員" },
-    { label: "WLTC燃費 (km/L)", num: true },
-    { label: "価格帯" },
-  ].map((c) => ({ ...c, headStyle: "" }));
-
-  interface VehRaw {
-    name: string;
-    type: string;
-    vals: string[];
-    nums: (number | null)[];
+  // ---- 諸元比較表（車種=行 / 諸元=列） ----
+  // 表示列 = lineup.columns（ボディタイプ→寸法3列→…→価格）に、
+  // ボディタイプ直後へ「発売年・世代」（targetGen 由来の合成列）を差し込む。
+  interface DispCol {
+    key: string; // specs のキー。合成列は "__gen"
+    label: string; // 単位付きの表示ラベル
+    kind: SpecColumn["kind"];
+    compare: boolean; // 数値の最大/最小ハイライト対象か
+    width: number; // grid 列幅(px)
   }
-  const vehicles: VehRaw[] = [
-    {
-      name: "クラウン",
-      type: "クロスオーバーSUV",
-      vals: [
-        "クロスオーバーSUV",
-        "2022年 / 16代目",
-        "4930×1840×1540",
-        "2,850",
-        "1,750",
-        "2.5L 直4 HEV",
-        "234 PS",
-        "AWD (E-Four)",
-        "5 名",
-        "22.4",
-        "435〜640万円",
-      ],
-      nums: [null, null, null, 2850, 1750, null, 234, null, null, 22.4, null],
-    },
-    {
-      name: "ランドクルーザー",
-      type: "本格SUV",
-      vals: [
-        "本格SUV",
-        "2024年 / 250系",
-        "4925×1980×1870",
-        "2,850",
-        "2,330",
-        "2.8L ディーゼル",
-        "204 PS",
-        "パートタイム4WD",
-        "5 名",
-        "11.0",
-        "520〜735万円",
-      ],
-      nums: [null, null, null, 2850, 2330, null, 204, null, null, 11.0, null],
-    },
-    {
-      name: "カローラ",
-      type: "セダン",
-      vals: [
-        "セダン",
-        "2019年 / 12代目",
-        "4495×1745×1435",
-        "2,640",
-        "1,370",
-        "1.8L 直4 HEV",
-        "140 PS",
-        "2WD / E-Four",
-        "5 名",
-        "30.2",
-        "201〜275万円",
-      ],
-      nums: [null, null, null, 2640, 1370, null, 140, null, null, 30.2, null],
-    },
-    {
-      name: "RAV4",
-      type: "SUV",
-      vals: [
-        "SUV",
-        "2019年 / 5代目",
-        "4600×1855×1685",
-        "2,690",
-        "1,650",
-        "2.5L 直4 HEV",
-        "222 PS",
-        "4WD (E-Four)",
-        "5 名",
-        "20.6",
-        "294〜440万円",
-      ],
-      nums: [null, null, null, 2690, 1650, null, 222, null, null, 20.6, null],
-    },
-    {
-      name: "アルファード",
-      type: "ミニバン",
-      vals: [
-        "ミニバン",
-        "2023年 / 4代目",
-        "4995×1850×1945",
-        "3,000",
-        "2,100",
-        "2.5L 直4 HEV",
-        "250 PS",
-        "AWD (E-Four)",
-        "7 名",
-        "17.7",
-        "540〜872万円",
-      ],
-      nums: [null, null, null, 3000, 2100, null, 250, null, null, 17.7, null],
-    },
-    {
-      name: "ヤリス",
-      type: "コンパクト",
-      vals: [
-        "コンパクト",
-        "2020年 / 4代目",
-        "3940×1695×1500",
-        "2,550",
-        "1,090",
-        "1.5L 直3 HEV",
-        "116 PS",
-        "2WD / AWD",
-        "5 名",
-        "36.0",
-        "150〜250万円",
-      ],
-      nums: [null, null, null, 2550, 1090, null, 116, null, null, 36.0, null],
-    },
-  ];
+  const GEN_KEY = "__gen";
+  const withUnit = (c: SpecColumn) =>
+    (c.kind === "number" || c.kind === "range") && c.unit ? `${c.label} (${c.unit})` : c.label;
+  const widthFor = (kind: SpecColumn["kind"]) =>
+    kind === "range" ? 150 : kind === "number" ? 100 : 140;
 
-  // per-column max/min index for numeric specs
-  const colStats = specCols.map((c, ci) => {
-    if (!c.num) return null;
-    const arr = vehicles.map((v) => v.nums[ci]);
+  const dispCols: DispCol[] = [];
+  lineup.columns.forEach((c, ci) => {
+    dispCols.push({
+      key: c.key,
+      label: withUnit(c),
+      kind: c.kind,
+      compare: c.kind === "number" && c.compare === true,
+      width: widthFor(c.kind),
+    });
+    // 先頭（ボディタイプ）の直後に発売年・世代を挿入
+    if (ci === 0) {
+      dispCols.push({
+        key: GEN_KEY,
+        label: "発売年・世代",
+        kind: "text",
+        compare: false,
+        width: 128,
+      });
+    }
+  });
+
+  const specCols: SpecCol[] = dispCols.map((c) => ({
+    label: c.label,
+    num: c.kind === "number",
+    headStyle: `padding:16px 14px;border-left:1px solid ${GREY2};font-size:11.5px;font-weight:700;color:${GREY6};display:flex;align-items:flex-end;line-height:1.35`,
+  }));
+
+  // 各セルの表示文字列を算出（発売年・世代は lineup、諸元は specs から）
+  const cellText = (c: DispCol, vehName: string, targetGen: string): string => {
+    if (c.key === GEN_KEY) return targetGen;
+    const raw = specs[vehName]?.[c.key];
+    if (raw == null) return "";
+    if (c.kind === "range") {
+      const p = raw as PriceRange;
+      return `${fmtNum(p.min)}〜${fmtNum(p.max)}`;
+    }
+    if (c.kind === "number") return fmtNum(raw as number);
+    return String(raw);
+  };
+
+  // 列ごとの最大/最小インデックス（compare 対象の数値列のみ）
+  const colStats = dispCols.map((c) => {
+    if (!c.compare) return null;
     let mx = -Infinity,
       mn = Infinity,
       maxI = -1,
       minI = -1;
-    arr.forEach((v, i) => {
-      if (v != null && v > mx) {
-        mx = v;
+    lineup.vehicles.forEach((v, i) => {
+      const raw = specs[v.name]?.[c.key];
+      if (typeof raw !== "number") return;
+      if (raw > mx) {
+        mx = raw;
         maxI = i;
       }
-      if (v != null && v < mn) {
-        mn = v;
+      if (raw < mn) {
+        mn = raw;
         minI = i;
       }
     });
@@ -415,16 +310,13 @@ export function buildLineageView(): LineageView {
     return { maxI, minI };
   });
 
-  const GRID =
-    "display:grid;grid-template-columns:200px 128px 126px 158px 118px 116px 150px 130px 150px 82px 128px 148px";
+  const GRID = `display:grid;grid-template-columns:200px ${dispCols.map((c) => c.width + "px").join(" ")}`;
   const compareHeadStyle = `${GRID};background:${GREY05};border-bottom:1px solid ${GREY2}`;
   const headVehStyle = `position:sticky;left:0;z-index:3;background:${GREY05};padding:16px 18px;font-size:12px;font-weight:700;letter-spacing:0.06em;color:${GREY4};display:flex;align-items:flex-end;border-right:1px solid ${GREY2}`;
-  specCols.forEach((c) => {
-    c.headStyle = `padding:16px 14px;border-left:1px solid ${GREY2};font-size:11.5px;font-weight:700;color:${GREY6};display:flex;align-items:flex-end;line-height:1.35`;
-  });
 
-  const vehicleRows: VehicleRow[] = vehicles.map((v, vi) => {
-    const cells: Cell[] = v.vals.map((text, ci) => {
+  const vehicleRows: VehicleRow[] = lineup.vehicles.map((v, vi) => {
+    const cells: Cell[] = dispCols.map((c, ci) => {
+      const text = cellText(c, v.name, v.targetGen);
       const st = colStats[ci];
       const isMax = !!st && st.maxI === vi;
       const isMin = !!st && st.minI === vi;

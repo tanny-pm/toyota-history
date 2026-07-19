@@ -1,0 +1,48 @@
+{
+  "nameplates": [
+    {
+      "label": "レビン",
+      "sub": "派生 / カローラ",
+      "status": "discontinued",
+      "derivativeOf": "カローラ",
+      "branchYear": 1972,
+      "generations": [1972, 1983, 1991, 1998]
+    },
+    {
+      "label": "カローラ",
+      "sub": "1966–現行",
+      "status": "active",
+      "currentYear": 2019,
+      "generations": [1966, 1972, 1979, 1987, 2000, 2012, 2019]
+    },
+    {
+      "label": "クラウン",
+      "sub": "1966–現行",
+      "status": "active",
+      "currentYear": 2022,
+      "generations": [1967, 1974, 1983, 1991, 2003, 2018, 2022]
+    },
+    {
+      "label": "プラド",
+      "sub": "派生 / ランクル",
+      "status": "active",
+      "currentYear": 2020,
+      "derivativeOf": "ランドクルーザー",
+      "branchYear": 1990,
+      "generations": [1990, 1996, 2002, 2009, 2020]
+    },
+    {
+      "label": "ランドクルーザー",
+      "sub": "1966–現行",
+      "status": "active",
+      "currentYear": 2021,
+      "generations": [1966, 1980, 1990, 1998, 2007, 2021]
+    },
+    {
+      "label": "セリカ",
+      "sub": "1970–2006 廃番",
+      "status": "discontinued",
+      "generations": [1970, 1977, 1985, 1994, 1999, 2006]
+    }
+  ]
+}

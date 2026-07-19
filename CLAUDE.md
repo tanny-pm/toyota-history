@@ -29,9 +29,13 @@ Lint の抑制は oxlint 構文を使う。例: `// oxlint-disable-next-line typ
 
 ## アーキテクチャ
 
-中心となる設計は「**1つの純粋関数がすべてを計算し、コンポーネントは描画するだけ**」。
+中心となる設計は「**データは `data/*.json`、1つの純粋関数がそれを描画用に変換し、コンポーネントは描画するだけ**」。
 
-- **`src/lineage/lineageModel.ts`** — `buildLineageView()` は純粋・決定的な関数（React にもプロップスにも依存しない）で、`LineageView` を返す。中身はジオメトリ全般（タイムラインの x/y 座標、SVG コネクタのパス、ノード位置）、ダミーデータ一式、そして各要素の**完成済みインライン CSS 文字列**。デザインモックの `renderVals()` を忠実に移植したもの。レイアウトとスタイリングのロジック（諸元表の列ごとの最大/最小ハイライトなども含む）の唯一の正となる場所であり、唯一ユニットテストされている対象でもある。
+- **データ層（`data/*.json` ＋ `src/data/`）** — 実データは3レイヤの JSON に分離（`real-data-plan.md` に全体設計）。`data/genealogy.json`（手書き：系譜ツリー）、`data/lineup.json`（手書き：諸元の列定義＋現行車種マニフェスト）、`data/specs.json`（機械生成：数値ネイティブの諸元）。型は `src/data/types.ts`（唯一の契約）。`src/data/index.ts` が JSON をビルド時に**静的 import** して型付きで再エクスポート（実行時 fetch なし）。`src/data/dataIntegrity.test.ts` が手書き層と生成層の整合（対応・型・派生の親の存在）を検査し、壊れたデータを `npm run check` / CI で落とす。
+
+- **`src/lineage/lineageModel.ts`** — `buildLineageView(genealogy, lineup, specs)` は純粋・決定的な関数（React にもプロップスにも依存しない）で、データを**引数で受け取り** `LineageView` を返す。中身はジオメトリ全般（タイムラインの x/y 座標、SVG コネクタのパス、ノード座標、系譜の縦位置＝配列順から算出）と各要素の**完成済みインライン CSS 文字列**の生成。デザインモックの `renderVals()` を移植したもの。レイアウトとスタイリングのロジック（諸元表の列ごとの最大/最小ハイライト、単位付与、桁区切りなど）の唯一の正となる場所であり、ユニットテストされている対象でもある。**データ本体はここには無い**（`data/*.json` にある）。
+
+- **諸元パイプライン（`scripts/fetch-wikipedia.mjs` ＋ `.claude/skills/rebuild-specs/`）** — `data/specs.json` は Wikipedia 由来の実データで都度再生成する（定期自動化はしない）。取得（依存ゼロの node スクリプト → `data/raw/` にキャッシュ）と抽出（`/rebuild-specs` スキル起動で Claude Code 自身が本文から `VehicleSpecs` スキーマへ構造化）を分離。位置づけは「リアルなデモ」で、Wikipedia を一旦信頼し正確性の考証は課さない。
 
 - **`src/components/*`** — 薄い描画専用。`App.tsx` が `buildLineageView()` を一度だけ呼び、`view` を `GenealogySection`（タイムライン樹形図）と `CompareSection`（諸元表）に渡す。コンポーネントは `view` の配列を map して描画する。**静的・構造的なスタイルは Tailwind ユーティリティクラス（`className`）で書く**。モデルが**実行時にデータから算出する動的スタイル**（ノード座標、目盛り位置、grid の px 列幅、セルごとの最大/最小ハイライト）だけが `style={css(...)}` によるインラインとして残る。
 
@@ -41,7 +45,7 @@ Lint の抑制は oxlint 構文を使う。例: `// oxlint-disable-next-line typ
 
 - **Tailwind v4（PostCSS 経由）** — `postcss.config.js` が `@tailwindcss/postcss` を接続する。公式の `@tailwindcss/vite` プラグインはあえて使わない: vite-plus は `vite` を自社フォーク（`@voidzero-dev/vite-plus-core`）にエイリアスしているため、ツールチェーン非依存な PostCSS 経路の方が確実だから。`tailwind.config.js` は無し（v4 はソースを自動検出する）。
 
-したがって典型的な変更フローは、`lineageModel.ts`（とそのテスト）でデータ／ジオメトリ／動的スタイルを調整し、**静的**なレイアウトや見た目はコンポーネントの Tailwind クラスで調整し、共有トークンは `tokens.css`（`@theme`）で編集する（色は `lineageModel.ts` の16進定数との二重管理に注意）、というもの。
+したがって典型的な変更フローは、**データ**は `data/*.json` を編集（系譜・現行車種は手書き、諸元は `/rebuild-specs` で再生成）、**ジオメトリ／動的スタイル**は `lineageModel.ts`（とそのテスト）、**静的**なレイアウトや見た目はコンポーネントの Tailwind クラス、**共有トークン**は `tokens.css`（`@theme`）で編集する（色は `lineageModel.ts` の16進定数との二重管理に注意）、というもの。
 
 ## デプロイ
 
