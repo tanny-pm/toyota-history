@@ -1,0 +1,87 @@
+{
+  "columns": [
+    { "key": "bodyType", "label": "ボディタイプ", "kind": "text" },
+    {
+      "key": "length",
+      "label": "全長",
+      "kind": "number",
+      "unit": "mm",
+      "compare": true,
+      "group": "寸法"
+    },
+    {
+      "key": "width",
+      "label": "全幅",
+      "kind": "number",
+      "unit": "mm",
+      "compare": true,
+      "group": "寸法"
+    },
+    {
+      "key": "height",
+      "label": "全高",
+      "kind": "number",
+      "unit": "mm",
+      "compare": true,
+      "group": "寸法"
+    },
+    {
+      "key": "wheelbase",
+      "label": "ホイールベース",
+      "kind": "number",
+      "unit": "mm",
+      "compare": true
+    },
+    { "key": "weight", "label": "車両重量", "kind": "number", "unit": "kg", "compare": true },
+    { "key": "engine", "label": "エンジン・排気量", "kind": "text" },
+    { "key": "power", "label": "最高出力", "kind": "number", "unit": "PS", "compare": true },
+    { "key": "drivetrain", "label": "駆動方式", "kind": "text" },
+    { "key": "seats", "label": "乗車定員", "kind": "number", "unit": "名", "compare": false },
+    {
+      "key": "fuelEconomy",
+      "label": "WLTC燃費",
+      "kind": "number",
+      "unit": "km/L",
+      "compare": true
+    },
+    { "key": "price", "label": "価格帯", "kind": "range", "unit": "万円" }
+  ],
+  "vehicles": [
+    {
+      "name": "クラウン",
+      "type": "クロスオーバーSUV",
+      "modelSlug": "crowncrossover",
+      "targetGen": "2022年 / 16代目"
+    },
+    {
+      "name": "ランドクルーザー",
+      "type": "本格SUV",
+      "modelSlug": "landcruiser250",
+      "targetGen": "2024年 / 250系"
+    },
+    {
+      "name": "カローラ",
+      "type": "セダン",
+      "modelSlug": "corolla",
+      "targetGen": "2019年 / 12代目"
+    },
+    {
+      "name": "RAV4",
+      "type": "SUV",
+      "modelSlug": "rav4",
+      "targetGen": "2019年 / 5代目"
+    },
+    {
+      "name": "アルファード",
+      "type": "ミニバン",
+      "modelSlug": "alphard",
+      "targetGen": "2023年 / 4代目"
+    },
+    {
+      "name": "ヤリス",
+      "type": "コンパクト",
+      "modelSlug": "yaris",
+      "targetGen": "2020年 / 4代目"
+    }
+  ]
+}

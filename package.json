@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vp dev",
     "build": "vp build",
+    "build:data:fetch": "node scripts/fetch-toyota.mjs",
     "preview": "vp preview",
     "check": "vp check && tsc --noEmit",
     "typecheck": "tsc --noEmit",
