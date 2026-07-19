@@ -21,8 +21,14 @@ export interface Tick {
 }
 
 export interface TreeNode {
+  /** ネームプレート名（例: "カローラ"）。詳細パネルの識別・見出しに使う */
+  label: string;
+  /** この世代の年。label と組で1ノードを一意に識別する */
+  year: number;
   genLabel: string;
   isCurrent: boolean;
+  /** 世代ごとの解説文（genealogy.json の overviews 由来。無い場合あり） */
+  overview?: string;
   silColor: string;
   thumbStyle: string;
   genStyle: string;
@@ -183,8 +189,11 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
         shadow = "0 1px 3px rgba(0,0,0,0.07)";
       }
       nodes.push({
+        label: np.label,
+        year,
         genLabel: gi + 1 + "代目",
         isCurrent,
+        overview: np.overviews?.[String(year)],
         silColor: sil,
         thumbStyle: `width:100%;height:26px;background:${thumbBg};border-radius:5px;display:flex;align-items:center;justify-content:center;margin-bottom:5px`,
         genStyle: `font-size:10px;font-weight:700;color:${gc};letter-spacing:0.01em;line-height:1`,
@@ -192,7 +201,7 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
           `position:absolute;top:${top}px;left:${x - NODE_W / 2}px;width:${NODE_W}px;height:${NODE_H}px;box-sizing:border-box;padding:6px 6px 7px;` +
           `display:flex;flex-direction:column;align-items:center;justify-content:center;` +
           `background:#fff;border:${border};border-radius:11px;z-index:2;box-shadow:${shadow};` +
-          `transition:transform var(--duration-base) var(--ease-standard),box-shadow var(--duration-base) var(--ease-standard);cursor:default`,
+          `transition:transform var(--duration-base) var(--ease-standard),box-shadow var(--duration-base) var(--ease-standard);cursor:pointer`,
       });
     });
   });
