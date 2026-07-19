@@ -4,40 +4,21 @@ import { CarSilhouette } from "./CarSilhouette";
 
 export function CompareSection({ view }: { view: LineageView }) {
   return (
-    <section id="compare" style={{ scrollMarginTop: "24px" }}>
-      <div style={{ marginBottom: "28px" }}>
-        <div
-          style={{
-            fontSize: "12px",
-            fontWeight: 700,
-            letterSpacing: "0.14em",
-            color: "var(--toyota-red)",
-            marginBottom: "8px",
-          }}
-        >
+    <section id="compare" className="scroll-mt-6">
+      <div className="mb-7">
+        <div className="mb-2 text-xs font-bold tracking-[0.14em] text-toyota-red">
           SPECIFICATIONS
         </div>
-        <h2
-          style={{ margin: "0 0 6px", fontSize: "32px", fontWeight: 700, letterSpacing: "-0.02em" }}
-        >
-          諸元比較表
-        </h2>
-        <p style={{ margin: 0, fontSize: "15px", color: "var(--text-secondary)" }}>
+        <h2 className="mt-0 mb-1.5 text-[32px] font-bold tracking-[-0.02em]">諸元比較表</h2>
+        <p className="m-0 text-[15px] text-fg-muted">
           現行モデルの写真を縦に並べ、主要諸元を横に比較できます。
-          <span style={{ color: "var(--text-tertiary)" }}>（各項目の最大・最小を色分け）</span>
+          <span className="text-fg-subtle">（各項目の最大・最小を色分け）</span>
         </p>
       </div>
 
-      <div
-        style={{
-          border: "1px solid var(--border-subtle)",
-          borderRadius: "var(--radius-lg)",
-          overflow: "hidden",
-          boxShadow: "var(--shadow-sm)",
-        }}
-      >
-        <div className="tl-scroll" style={{ overflowX: "auto" }}>
-          <div style={{ width: "max-content" }}>
+      <div className="overflow-hidden rounded-lg border border-line shadow-sm">
+        <div className="tl-scroll overflow-x-auto">
+          <div className="w-max">
             <div style={css(view.compareHeadStyle)}>
               <div style={css(view.headVehStyle)}>車種</div>
               {view.specCols.map((col, i) => (
@@ -53,27 +34,10 @@ export function CompareSection({ view }: { view: LineageView }) {
                     <CarSilhouette color={v.silColor} width="80%" />
                   </div>
                   <div>
-                    <div
-                      style={{
-                        fontSize: "15px",
-                        fontWeight: 700,
-                        letterSpacing: "-0.01em",
-                        color: "var(--text-primary)",
-                        lineHeight: 1.2,
-                      }}
-                    >
+                    <div className="text-[15px] font-bold tracking-[-0.01em] text-fg leading-[1.2]">
                       {v.name}
                     </div>
-                    <div
-                      style={{
-                        fontSize: "11px",
-                        fontWeight: 600,
-                        color: "var(--text-tertiary)",
-                        marginTop: "2px",
-                      }}
-                    >
-                      {v.type}
-                    </div>
+                    <div className="mt-0.5 text-[11px] font-semibold text-fg-subtle">{v.type}</div>
                   </div>
                 </div>
                 {v.cells.map((cell, ci) => (
@@ -87,7 +51,7 @@ export function CompareSection({ view }: { view: LineageView }) {
           </div>
         </div>
       </div>
-      <p style={{ margin: "16px 0 0", fontSize: "12px", color: "var(--text-tertiary)" }}>
+      <p className="mt-4 mb-0 text-xs text-fg-subtle">
         ※
         数値・年代・価格はすべてダミーデータです。実車の諸元とは異なります。横スクロールで全項目を確認できます。
       </p>

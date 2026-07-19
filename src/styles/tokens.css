@@ -1,71 +1,71 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap");
+@import "tailwindcss";
 
-/* --- Colors --- */
-:root {
-  --toyota-red: #eb0a1e;
-  --toyota-red-dark: #b8000f;
-  --toyota-red-darker: #8c0009;
-  --black: #000000;
-  --white: #ffffff;
-  --grey-950: #111112;
-  --grey-900: #1a1b1c;
-  --grey-800: #2b2c2e;
-  --grey-700: #414244;
-  --grey-600: #58595b;
-  --grey-500: #797b7e;
-  --grey-400: #9a9c9f;
-  --grey-300: #bdbec0;
-  --grey-200: #d9dadc;
-  --grey-100: #ececed;
-  --grey-50: #f5f5f6;
-  --surface-page: var(--white);
-  --surface-sunken: var(--grey-50);
-  --surface-card: var(--white);
-  --surface-inverse: var(--black);
-  --surface-overlay: rgba(17, 17, 18, 0.6);
-  --text-primary: var(--black);
-  --text-secondary: var(--grey-600);
-  --text-tertiary: var(--grey-400);
-  --text-inverse: var(--white);
-  --text-on-red: var(--white);
-  --border-subtle: var(--grey-200);
-  --border-default: var(--grey-300);
-  --border-strong: var(--grey-600);
-  --accent: var(--toyota-red);
-  --accent-hover: var(--toyota-red-dark);
-  --accent-active: var(--toyota-red-darker);
-  --accent-soft: #fde7e9;
-  --focus-ring: var(--toyota-red);
-  --semantic-success: #1e8e3e;
-  --semantic-warning: #b8860b;
-  --semantic-error: var(--toyota-red);
-  --semantic-info: #2b6cb0;
-}
+/*
+ * デザイントークンを Tailwind v4 の @theme に一元化。
+ * ここで宣言した変数がユーティリティ（bg-toyota-red / rounded-lg / shadow-sm 等）を生成する。
+ * `static` を付けているのは、lineageModel.ts が実行時に生成する inline スタイル文字列が
+ * var(--duration-base) / var(--ease-standard) / var(--radius-pill) を参照するため、
+ * Tailwind の未使用トークン刈り込みに関わらず root へ必ず出力させる目的。
+ */
+@theme static {
+  /* --- Colors: 生ランプ --- */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-toyota-red: #eb0a1e;
+  --color-toyota-red-dark: #b8000f;
+  --color-toyota-red-darker: #8c0009;
+  --color-grey-950: #111112;
+  --color-grey-900: #1a1b1c;
+  --color-grey-800: #2b2c2e;
+  --color-grey-700: #414244;
+  --color-grey-600: #58595b;
+  --color-grey-500: #797b7e;
+  --color-grey-400: #9a9c9f;
+  --color-grey-300: #bdbec0;
+  --color-grey-200: #d9dadc;
+  --color-grey-100: #ececed;
+  --color-grey-50: #f5f5f6;
 
-/* --- Radius --- */
-:root {
+  /* --- Colors: セマンティック別名（簡潔なユーティリティ名に整理） --- */
+  --color-fg: var(--color-black); /* text-primary */
+  --color-fg-muted: var(--color-grey-600); /* text-secondary */
+  --color-fg-subtle: var(--color-grey-400); /* text-tertiary */
+  --color-surface: var(--color-white); /* surface-page / card */
+  --color-surface-sunken: var(--color-grey-50);
+  --color-line: var(--color-grey-200); /* border-subtle */
+  --color-line-strong: var(--color-grey-600);
+  --color-accent: var(--color-toyota-red);
+  --color-accent-hover: var(--color-toyota-red-dark);
+  --color-accent-soft: #fde7e9;
+
+  /* --- Radius --- */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-pill: 999px;
-}
 
-/* --- Shadows --- */
-:root {
+  /* --- Shadows --- */
   --shadow-sm: 0 1px 2px rgba(17, 17, 18, 0.06), 0 1px 1px rgba(17, 17, 18, 0.04);
   --shadow-md: 0 4px 12px rgba(17, 17, 18, 0.08), 0 1px 3px rgba(17, 17, 18, 0.06);
   --shadow-lg: 0 12px 32px rgba(17, 17, 18, 0.12), 0 2px 6px rgba(17, 17, 18, 0.06);
   --shadow-xl: 0 24px 64px rgba(17, 17, 18, 0.18), 0 4px 12px rgba(17, 17, 18, 0.08);
   --shadow-focus: 0 0 0 4px rgba(235, 10, 30, 0.22);
-}
 
-/* --- Motion --- */
-:root {
+  /* --- Easing --- */
   --ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /* --- Typography --- */
+  --font-sans:
+    "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic",
+    sans-serif;
+  --font-jp: "Noto Sans JP", "Inter", sans-serif;
+
+  /* --- Motion（ユーティリティ非生成・実行時参照用のパススルー） --- */
   --duration-fast: 120ms;
   --duration-base: 200ms;
   --duration-slow: 320ms;
@@ -74,39 +74,31 @@
   --hover-lift: -2px;
 }
 
-/* --- Typography --- */
-:root {
-  --font-sans:
-    "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic",
-    sans-serif;
-  --font-jp: "Noto Sans JP", "Inter", sans-serif;
+/* --- Base（@layer base に入れ、Tailwind ユーティリティで上書き可能にする） --- */
+@layer base {
+  body {
+    margin: 0;
+    background: var(--color-surface);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a {
+    color: var(--color-toyota-red);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-toyota-red-dark);
+  }
 }
 
-/* --- Base --- */
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  background: var(--surface-page);
-  color: var(--text-primary);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-}
-a {
-  color: var(--toyota-red);
-  text-decoration: none;
-}
-a:hover {
-  color: var(--toyota-red-dark);
-}
 .tl-scroll::-webkit-scrollbar {
   height: 10px;
 }
 .tl-scroll::-webkit-scrollbar-thumb {
-  background: var(--grey-300);
+  background: var(--color-grey-300);
   border-radius: 8px;
 }
 .tl-scroll::-webkit-scrollbar-track {
-  background: var(--grey-50);
+  background: var(--color-grey-50);
 }

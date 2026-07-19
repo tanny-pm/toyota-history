@@ -4,52 +4,21 @@ import { CarSilhouette } from "./CarSilhouette";
 
 function Legend() {
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "20px",
-        alignItems: "center",
-        fontSize: "12.5px",
-        color: "var(--text-secondary)",
-      }}
-    >
-      <span style={{ display: "inline-flex", alignItems: "center", gap: "7px" }}>
-        <span
-          style={{
-            width: "11px",
-            height: "11px",
-            borderRadius: "3px",
-            background: "var(--toyota-red)",
-          }}
-        />
+    <div className="flex items-center gap-5 text-[12.5px] text-fg-muted">
+      <span className="inline-flex items-center gap-[7px]">
+        <span className="h-[11px] w-[11px] rounded-[3px] bg-toyota-red" />
         現行
       </span>
-      <span style={{ display: "inline-flex", alignItems: "center", gap: "7px" }}>
-        <span
-          style={{
-            width: "11px",
-            height: "11px",
-            borderRadius: "3px",
-            background: "#fff",
-            border: "1.5px solid var(--grey-300)",
-          }}
-        />
+      <span className="inline-flex items-center gap-[7px]">
+        <span className="h-[11px] w-[11px] rounded-[3px] border-[1.5px] border-grey-300 bg-white" />
         過去世代
       </span>
-      <span style={{ display: "inline-flex", alignItems: "center", gap: "7px" }}>
-        <span
-          style={{
-            width: "11px",
-            height: "11px",
-            borderRadius: "3px",
-            background: "var(--grey-100)",
-            border: "1.5px solid var(--grey-200)",
-          }}
-        />
+      <span className="inline-flex items-center gap-[7px]">
+        <span className="h-[11px] w-[11px] rounded-[3px] border-[1.5px] border-grey-200 bg-grey-100" />
         廃番
       </span>
-      <span style={{ display: "inline-flex", alignItems: "center", gap: "7px" }}>
-        <span style={{ width: "16px", height: 0, borderTop: "2px dashed var(--grey-400)" }} />
+      <span className="inline-flex items-center gap-[7px]">
+        <span className="h-0 w-4 border-t-2 border-dashed border-grey-400" />
         派生系統
       </span>
     </div>
@@ -58,75 +27,26 @@ function Legend() {
 
 export function GenealogySection({ view }: { view: LineageView }) {
   return (
-    <section id="genealogy" style={{ marginBottom: "88px", scrollMarginTop: "24px" }}>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: "16px",
-          marginBottom: "8px",
-        }}
-      >
+    <section id="genealogy" className="mb-[88px] scroll-mt-6">
+      <div className="mb-2 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <div
-            style={{
-              fontSize: "12px",
-              fontWeight: 700,
-              letterSpacing: "0.14em",
-              color: "var(--toyota-red)",
-              marginBottom: "8px",
-            }}
-          >
-            GENEALOGY
-          </div>
-          <h2 style={{ margin: 0, fontSize: "32px", fontWeight: 700, letterSpacing: "-0.02em" }}>
-            系譜の樹形図
-          </h2>
+          <div className="mb-2 text-xs font-bold tracking-[0.14em] text-toyota-red">GENEALOGY</div>
+          <h2 className="m-0 text-[32px] font-bold tracking-[-0.02em]">系譜の樹形図</h2>
         </div>
         <Legend />
       </div>
-      <p style={{ margin: "0 0 20px", fontSize: "13px", color: "var(--text-tertiary)" }}>
-        ← 横スクロールで年代を移動できます →
-      </p>
+      <p className="mt-0 mb-5 text-[13px] text-fg-subtle">← 横スクロールで年代を移動できます →</p>
 
-      <div
-        style={{
-          border: "1px solid var(--border-subtle)",
-          borderRadius: "var(--radius-lg)",
-          overflow: "hidden",
-          background: "var(--surface-card)",
-          boxShadow: "var(--shadow-sm)",
-        }}
-      >
-        <div style={{ display: "flex" }}>
+      <div className="overflow-hidden rounded-lg border border-line bg-surface shadow-sm">
+        <div className="flex">
           {/* fixed nameplate labels */}
           <div style={css(view.labelColStyle)}>
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: "34px",
-                display: "flex",
-                alignItems: "center",
-                paddingLeft: "16px",
-                fontSize: "11px",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                color: "var(--text-tertiary)",
-                borderBottom: "1px solid var(--border-subtle)",
-              }}
-            >
+            <div className="absolute inset-x-0 top-0 flex h-[34px] items-center border-b border-line pl-4 text-[11px] font-bold tracking-[0.1em] text-fg-subtle">
               ネームプレート
             </div>
             {view.labels.map((lb, i) => (
               <div key={i} style={css(lb.style)}>
-                <span
-                  style={{ fontSize: "14px", fontWeight: 700, color: lb.color, lineHeight: 1.2 }}
-                >
+                <span className="text-sm font-bold leading-[1.2]" style={{ color: lb.color }}>
                   {lb.name}
                 </span>
                 <span style={css(lb.subStyle)}>{lb.sub}</span>
@@ -135,7 +55,7 @@ export function GenealogySection({ view }: { view: LineageView }) {
           </div>
 
           {/* scrollable track */}
-          <div className="tl-scroll" style={{ overflowX: "auto", flex: 1 }}>
+          <div className="tl-scroll flex-1 overflow-x-auto">
             <div style={css(view.trackStyle)}>
               {/* year gridlines + labels */}
               {view.ticks.map((tk, i) => (
@@ -146,17 +66,11 @@ export function GenealogySection({ view }: { view: LineageView }) {
               ))}
 
               {/* connector svg */}
-              <div style={{ position: "absolute", top: 0, left: 0 }}>
+              <div className="absolute top-0 left-0">
                 <svg
                   width={view.trackW}
                   height={view.trackH}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    pointerEvents: "none",
-                    zIndex: 1,
-                  }}
+                  className="pointer-events-none absolute top-0 left-0 z-[1]"
                 >
                   {view.connectors.map((c, i) => {
                     if (c.kind === "line")
@@ -196,21 +110,7 @@ export function GenealogySection({ view }: { view: LineageView }) {
                   </div>
                   <span style={css(n.genStyle)}>{n.genLabel}</span>
                   {n.isCurrent && (
-                    <span
-                      style={{
-                        position: "absolute",
-                        top: "-9px",
-                        right: "-8px",
-                        background: "#fff",
-                        color: "var(--toyota-red)",
-                        border: "1.5px solid var(--toyota-red)",
-                        fontSize: "9px",
-                        fontWeight: 800,
-                        letterSpacing: "0.06em",
-                        padding: "1px 6px",
-                        borderRadius: "var(--radius-pill)",
-                      }}
-                    >
+                    <span className="absolute -top-[9px] -right-[8px] rounded-pill border-[1.5px] border-toyota-red bg-white px-[6px] py-px text-[9px] font-extrabold tracking-[0.06em] text-toyota-red">
                       現行
                     </span>
                   )}
