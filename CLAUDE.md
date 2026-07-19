@@ -35,7 +35,7 @@ Lint の抑制は oxlint 構文を使う。例: `// oxlint-disable-next-line typ
 
 - **`src/lineage/lineageModel.ts`** — `buildLineageView(genealogy, lineup, specs)` は純粋・決定的な関数（React にもプロップスにも依存しない）で、データを**引数で受け取り** `LineageView` を返す。中身はジオメトリ全般（タイムラインの x/y 座標、SVG コネクタのパス、ノード座標、系譜の縦位置＝配列順から算出）と各要素の**完成済みインライン CSS 文字列**の生成。デザインモックの `renderVals()` を移植したもの。レイアウトとスタイリングのロジック（諸元表の列ごとの最大/最小ハイライト、単位付与、桁区切りなど）の唯一の正となる場所であり、ユニットテストされている対象でもある。**データ本体はここには無い**（`data/*.json` にある）。
 
-- **諸元パイプライン（`scripts/fetch-wikipedia.mjs` ＋ `.claude/skills/rebuild-specs/`）** — `data/specs.json` は Wikipedia 由来の実データで都度再生成する（定期自動化はしない）。取得（依存ゼロの node スクリプト → `data/raw/` にキャッシュ）と抽出（`/rebuild-specs` スキル起動で Claude Code 自身が本文から `VehicleSpecs` スキーマへ構造化）を分離。位置づけは「リアルなデモ」で、Wikipedia を一旦信頼し正確性の考証は課さない。
+- **諸元パイプライン（`scripts/fetch-toyota.mjs` ＋ `.claude/skills/rebuild-specs/`）** — `data/specs.json` はトヨタ公式サイト（toyota.jp）の主要諸元 PDF 由来の実データで都度再生成する（定期自動化はしない）。取得（依存ゼロの node:https スクリプトで車種ページ → 主要諸元 PDF を `data/raw/*.pdf` にキャッシュ）と抽出（`/rebuild-specs` スキル起動で Claude Code 自身が PDF を Read して `VehicleSpecs` スキーマへ構造化）を分離。位置づけは「リアルなデモ」で、公式サイトを一旦信頼し正確性の考証は課さない。
 
 - **`src/components/*`** — 薄い描画専用。`App.tsx` が `buildLineageView()` を一度だけ呼び、`view` を `GenealogySection`（タイムライン樹形図）と `CompareSection`（諸元表）に渡す。コンポーネントは `view` の配列を map して描画する。**静的・構造的なスタイルは Tailwind ユーティリティクラス（`className`）で書く**。モデルが**実行時にデータから算出する動的スタイル**（ノード座標、目盛り位置、grid の px 列幅、セルごとの最大/最小ハイライト）だけが `style={css(...)}` によるインラインとして残る。
 

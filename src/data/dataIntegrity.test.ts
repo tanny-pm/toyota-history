@@ -109,9 +109,9 @@ describe("諸元レイヤ（lineup.json ↔ specs.json）", () => {
     }
   });
 
-  it("wikipediaTitle / targetGen が全車種に設定されている", () => {
+  it("modelSlug / targetGen が全車種に設定されている", () => {
     for (const v of lineup.vehicles) {
-      expect(v.wikipediaTitle.length).toBeGreaterThan(0);
+      expect(v.modelSlug.length).toBeGreaterThan(0);
       expect(v.targetGen.length).toBeGreaterThan(0);
     }
   });

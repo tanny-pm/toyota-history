@@ -50,37 +50,37 @@
     {
       "name": "クラウン",
       "type": "クロスオーバーSUV",
-      "wikipediaTitle": "トヨタ・クラウン",
+      "modelSlug": "crowncrossover",
       "targetGen": "2022年 / 16代目"
     },
     {
       "name": "ランドクルーザー",
       "type": "本格SUV",
-      "wikipediaTitle": "トヨタ・ランドクルーザー",
+      "modelSlug": "landcruiser250",
       "targetGen": "2024年 / 250系"
     },
     {
       "name": "カローラ",
       "type": "セダン",
-      "wikipediaTitle": "トヨタ・カローラ",
+      "modelSlug": "corolla",
       "targetGen": "2019年 / 12代目"
     },
     {
       "name": "RAV4",
       "type": "SUV",
-      "wikipediaTitle": "トヨタ・RAV4",
+      "modelSlug": "rav4",
       "targetGen": "2019年 / 5代目"
     },
     {
       "name": "アルファード",
       "type": "ミニバン",
-      "wikipediaTitle": "トヨタ・アルファード",
+      "modelSlug": "alphard",
       "targetGen": "2023年 / 4代目"
     },
     {
       "name": "ヤリス",
       "type": "コンパクト",
-      "wikipediaTitle": "トヨタ・ヤリス",
+      "modelSlug": "yaris",
       "targetGen": "2020年 / 4代目"
     }
   ]

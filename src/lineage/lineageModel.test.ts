@@ -49,9 +49,9 @@ describe("buildLineageView", () => {
     expect(alphard?.cells[5].text).toBe("3,000");
   });
 
-  it("価格帯セルは min〜max で表示される（カローラ=201〜275）", () => {
+  it("価格帯セルは min〜max で表示される（カローラ=230〜290）", () => {
     const corolla = view.vehicleRows.find((v) => v.name === "カローラ");
-    expect(corolla?.cells[12].text).toBe("201〜275");
+    expect(corolla?.cells[12].text).toBe("230〜290");
   });
 
   it("発売年・世代セル(idx1)は lineup.targetGen 由来", () => {

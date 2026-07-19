@@ -50,8 +50,8 @@ export interface LineupVehicle {
   name: string;
   /** 行の補足ラベル（ボディタイプの短縮など） */
   type: string;
-  /** 取得元 Wikipedia 記事タイトル（パイプラインが取得に使う） */
-  wikipediaTitle: string;
+  /** toyota.jp の車種スラッグ（例: "crowncrossover"）。パイプラインが公式諸元 PDF の取得に使う */
+  modelSlug: string;
   /** 抽出対象の世代。記事内で対象世代を特定し、表示にも使う（例: "2022年 / 16代目"） */
   targetGen: string;
 }
