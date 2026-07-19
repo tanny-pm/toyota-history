@@ -1,54 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap");
 
 /* --- Colors --- */
 :root {
-  --toyota-red: #EB0A1E; --toyota-red-dark: #B8000F; --toyota-red-darker: #8C0009;
-  --black: #000000; --white: #FFFFFF;
-  --grey-950: #111112; --grey-900: #1A1B1C; --grey-800: #2B2C2E; --grey-700: #414244;
-  --grey-600: #58595B; --grey-500: #797B7E; --grey-400: #9A9C9F; --grey-300: #BDBEC0;
-  --grey-200: #D9DADC; --grey-100: #ECECED; --grey-50: #F5F5F6;
-  --surface-page: var(--white); --surface-sunken: var(--grey-50); --surface-card: var(--white);
-  --surface-inverse: var(--black); --surface-overlay: rgba(17,17,18,0.6);
-  --text-primary: var(--black); --text-secondary: var(--grey-600); --text-tertiary: var(--grey-400);
-  --text-inverse: var(--white); --text-on-red: var(--white);
-  --border-subtle: var(--grey-200); --border-default: var(--grey-300); --border-strong: var(--grey-600);
-  --accent: var(--toyota-red); --accent-hover: var(--toyota-red-dark); --accent-active: var(--toyota-red-darker);
-  --accent-soft: #FDE7E9;
+  --toyota-red: #eb0a1e;
+  --toyota-red-dark: #b8000f;
+  --toyota-red-darker: #8c0009;
+  --black: #000000;
+  --white: #ffffff;
+  --grey-950: #111112;
+  --grey-900: #1a1b1c;
+  --grey-800: #2b2c2e;
+  --grey-700: #414244;
+  --grey-600: #58595b;
+  --grey-500: #797b7e;
+  --grey-400: #9a9c9f;
+  --grey-300: #bdbec0;
+  --grey-200: #d9dadc;
+  --grey-100: #ececed;
+  --grey-50: #f5f5f6;
+  --surface-page: var(--white);
+  --surface-sunken: var(--grey-50);
+  --surface-card: var(--white);
+  --surface-inverse: var(--black);
+  --surface-overlay: rgba(17, 17, 18, 0.6);
+  --text-primary: var(--black);
+  --text-secondary: var(--grey-600);
+  --text-tertiary: var(--grey-400);
+  --text-inverse: var(--white);
+  --text-on-red: var(--white);
+  --border-subtle: var(--grey-200);
+  --border-default: var(--grey-300);
+  --border-strong: var(--grey-600);
+  --accent: var(--toyota-red);
+  --accent-hover: var(--toyota-red-dark);
+  --accent-active: var(--toyota-red-darker);
+  --accent-soft: #fde7e9;
   --focus-ring: var(--toyota-red);
-  --semantic-success: #1E8E3E; --semantic-warning: #B8860B; --semantic-error: var(--toyota-red); --semantic-info: #2B6CB0;
+  --semantic-success: #1e8e3e;
+  --semantic-warning: #b8860b;
+  --semantic-error: var(--toyota-red);
+  --semantic-info: #2b6cb0;
 }
 
 /* --- Radius --- */
 :root {
-  --radius-xs: 4px; --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px; --radius-xl: 24px; --radius-pill: 999px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
 }
 
 /* --- Shadows --- */
 :root {
-  --shadow-sm: 0 1px 2px rgba(17,17,18,0.06), 0 1px 1px rgba(17,17,18,0.04);
-  --shadow-md: 0 4px 12px rgba(17,17,18,0.08), 0 1px 3px rgba(17,17,18,0.06);
-  --shadow-lg: 0 12px 32px rgba(17,17,18,0.12), 0 2px 6px rgba(17,17,18,0.06);
-  --shadow-xl: 0 24px 64px rgba(17,17,18,0.18), 0 4px 12px rgba(17,17,18,0.08);
-  --shadow-focus: 0 0 0 4px rgba(235,10,30,0.22);
+  --shadow-sm: 0 1px 2px rgba(17, 17, 18, 0.06), 0 1px 1px rgba(17, 17, 18, 0.04);
+  --shadow-md: 0 4px 12px rgba(17, 17, 18, 0.08), 0 1px 3px rgba(17, 17, 18, 0.06);
+  --shadow-lg: 0 12px 32px rgba(17, 17, 18, 0.12), 0 2px 6px rgba(17, 17, 18, 0.06);
+  --shadow-xl: 0 24px 64px rgba(17, 17, 18, 0.18), 0 4px 12px rgba(17, 17, 18, 0.08);
+  --shadow-focus: 0 0 0 4px rgba(235, 10, 30, 0.22);
 }
 
 /* --- Motion --- */
 :root {
-  --ease-standard: cubic-bezier(0.32,0.72,0,1);
-  --ease-out: cubic-bezier(0.16,1,0.3,1);
-  --ease-in: cubic-bezier(0.7,0,0.84,0);
-  --duration-fast: 120ms; --duration-base: 200ms; --duration-slow: 320ms; --duration-slower: 480ms;
-  --press-scale: 0.97; --hover-lift: -2px;
+  --ease-standard: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+  --duration-slower: 480ms;
+  --press-scale: 0.97;
+  --hover-lift: -2px;
 }
 
 /* --- Typography --- */
 :root {
-  --font-sans: 'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Hiragino Sans','Yu Gothic',sans-serif;
-  --font-jp: 'Noto Sans JP','Inter',sans-serif;
+  --font-sans:
+    "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic",
+    sans-serif;
+  --font-jp: "Noto Sans JP", "Inter", sans-serif;
 }
 
 /* --- Base --- */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   background: var(--surface-page);
@@ -56,8 +93,20 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
-a { color: var(--toyota-red); text-decoration: none; }
-a:hover { color: var(--toyota-red-dark); }
-.tl-scroll::-webkit-scrollbar { height: 10px; }
-.tl-scroll::-webkit-scrollbar-thumb { background: var(--grey-300); border-radius: 8px; }
-.tl-scroll::-webkit-scrollbar-track { background: var(--grey-50); }
+a {
+  color: var(--toyota-red);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--toyota-red-dark);
+}
+.tl-scroll::-webkit-scrollbar {
+  height: 10px;
+}
+.tl-scroll::-webkit-scrollbar-thumb {
+  background: var(--grey-300);
+  border-radius: 8px;
+}
+.tl-scroll::-webkit-scrollbar-track {
+  background: var(--grey-50);
+}

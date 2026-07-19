@@ -7,21 +7,21 @@
 
 ## 1. 確定した決定一覧
 
-| 項目 | 決定 |
-|---|---|
-| フレームワーク | React + **Vite+** + TypeScript |
-| スタイリング | **Tailwind CSS** |
-| Lint / 整形 | **Oxlint（`vp lint`）＋ Oxfmt（`vp fmt`）** ※Vite+ 標準。ESLint/Prettier は使わない |
-| テスト | **Vitest（`vp test`）を完全セットアップ**（設定＋サンプルテスト＋CI 実行） |
-| PM / ランタイム | **Vite+ が統合管理**（`vp install`。npm を基盤として自動検出） |
-| ホスティング | **GitHub Pages（プロジェクトサイト）** |
-| リポジトリ | `tanny-pm/toyota-history`（**public**） |
-| 公開URL | `https://tanny-pm.github.io/toyota-history/` |
-| Vite `base` | `'/toyota-history/'` |
-| デプロイ | **GitHub Actions**（`actions/deploy-pages`、`main` push で自動、build は Vite+） |
-| ルーティング | React Router、`basename = import.meta.env.BASE_URL` ＋ **404.html SPA フォールバック** |
-| データ | リポジトリ内の**静的 TS/JSON**（バックエンドなし） |
-| 版固定 | CI で **Node 22 LTS 固定** ＋ **Vite+ のバージョンをロック**（ベータ級ツールのため） |
+| 項目            | 決定                                                                                   |
+| --------------- | -------------------------------------------------------------------------------------- |
+| フレームワーク  | React + **Vite+** + TypeScript                                                         |
+| スタイリング    | **Tailwind CSS**                                                                       |
+| Lint / 整形     | **Oxlint（`vp lint`）＋ Oxfmt（`vp fmt`）** ※Vite+ 標準。ESLint/Prettier は使わない    |
+| テスト          | **Vitest（`vp test`）を完全セットアップ**（設定＋サンプルテスト＋CI 実行）             |
+| PM / ランタイム | **Vite+ が統合管理**（`vp install`。npm を基盤として自動検出）                         |
+| ホスティング    | **GitHub Pages（プロジェクトサイト）**                                                 |
+| リポジトリ      | `tanny-pm/toyota-history`（**public**）                                                |
+| 公開URL         | `https://tanny-pm.github.io/toyota-history/`                                           |
+| Vite `base`     | `'/toyota-history/'`                                                                   |
+| デプロイ        | **GitHub Actions**（`actions/deploy-pages`、`main` push で自動、build は Vite+）       |
+| ルーティング    | React Router、`basename = import.meta.env.BASE_URL` ＋ **404.html SPA フォールバック** |
+| データ          | リポジトリ内の**静的 TS/JSON**（バックエンドなし）                                     |
+| 版固定          | CI で **Node 22 LTS 固定** ＋ **Vite+ のバージョンをロック**（ベータ級ツールのため）   |
 
 ---
 
@@ -31,16 +31,16 @@ Vite+（`vite-plus`、CLI は `vp`）は VoidZero の統合ツールチェーン
 
 主要コマンド:
 
-| コマンド | 用途 |
-|---|---|
-| `vp create` | テンプレートから新規プロジェクト作成 |
-| `vp install` (`vp i`) | 依存インストール（PM 自動検出） |
-| `vp dev` | 開発サーバ（HMR） |
-| `vp check` | 整形・Lint・型チェックを一括実行 |
-| `vp lint` / `vp fmt` | Oxlint / Oxfmt |
-| `vp test` | Vitest でテスト |
-| `vp build` | 本番ビルド（Vite + Rolldown、`dist/` 出力） |
-| `vp preview` | 本番ビルドのプレビュー |
+| コマンド              | 用途                                        |
+| --------------------- | ------------------------------------------- |
+| `vp create`           | テンプレートから新規プロジェクト作成        |
+| `vp install` (`vp i`) | 依存インストール（PM 自動検出）             |
+| `vp dev`              | 開発サーバ（HMR）                           |
+| `vp check`            | 整形・Lint・型チェックを一括実行            |
+| `vp lint` / `vp fmt`  | Oxlint / Oxfmt                              |
+| `vp test`             | Vitest でテスト                             |
+| `vp build`            | 本番ビルド（Vite + Rolldown、`dist/` 出力） |
+| `vp preview`          | 本番ビルドのプレビュー                      |
 
 設定は `vite.config.ts` に集約し、`vite-plus` の `defineConfig` を使う（Vite / Vitest / Oxlint / Oxfmt / Task の設定を1ファイルに統合）。
 
@@ -85,14 +85,14 @@ gh repo create tanny-pm/toyota-history --public --source=. --remote=origin
 `vite.config.ts`:
 
 ```ts
-import { defineConfig } from 'vite-plus'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite-plus";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: '/toyota-history/',   // ← プロジェクトサイトの公開パス
+  base: "/toyota-history/", // ← プロジェクトサイトの公開パス
   plugins: [react()],
   // test: { ... }  // Vitest 設定もここに統合
-})
+});
 ```
 
 ### 4.4 ルーティング（React Router + base）
@@ -100,11 +100,11 @@ export default defineConfig({
 - `basename` は base パスから導出（ハードコードしない）:
 
 ```tsx
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter(routes, {
-  basename: import.meta.env.BASE_URL,   // '/toyota-history/'
-})
+  basename: import.meta.env.BASE_URL, // '/toyota-history/'
+});
 ```
 
 ### 4.5 404.html SPA フォールバック（GitHub Pages 用）
@@ -153,11 +153,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'          # LTS 固定
-      - run: npm ci                    # vite-plus は devDep として lockfile で版固定
-      - run: npm run check             # vp check（整形・Lint・型）
-      - run: npm test                  # vp test（Vitest）※CI は run-once モードで
-      - run: npm run build             # vp build → dist/
+          node-version: "22" # LTS 固定
+      - run: npm ci # vite-plus は devDep として lockfile で版固定
+      - run: npm run check # vp check（整形・Lint・型）
+      - run: npm test # vp test（Vitest）※CI は run-once モードで
+      - run: npm run build # vp build → dist/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist

@@ -1,0 +1,5 @@
+#!/bin/sh
+# 依存ゼロのプリコミットフック。
+# `npm install` 時に prepare スクリプトが core.hooksPath=.githooks を設定して有効化する。
+# 整形チェック + Lint + 型チェック(vp check)を実行し、問題があればコミットを中止する。
+npm run check
