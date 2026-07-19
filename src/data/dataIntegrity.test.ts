@@ -8,7 +8,7 @@ import lineupData from "../../data/lineup.json";
 import specsData from "../../data/specs.json";
 import type { Genealogy, Lineup, Specs, PriceRange } from "./types";
 
-const genealogy = genealogyData as Genealogy;
+const genealogy = genealogyData as unknown as Genealogy;
 const lineup = lineupData as Lineup;
 const specs = specsData as Specs;
 
@@ -55,6 +55,17 @@ describe("系譜レイヤ（genealogy.json）", () => {
       it("現行年(currentYear)は世代リストに含まれる", () => {
         if (n.currentYear !== undefined) {
           expect(n.generations).toContain(n.currentYear);
+        }
+      });
+
+      it("overviews のキーは実在する世代の年に対応する", () => {
+        if (n.overviews !== undefined) {
+          const years = new Set(n.generations.map(String));
+          for (const key of Object.keys(n.overviews)) {
+            expect(years, `${n.label} の overviews キー「${key}」に対応する世代が無い`).toContain(
+              key,
+            );
+          }
         }
       });
     });

@@ -1,6 +1,9 @@
 import { css } from "../lib/css";
-import type { LineageView } from "../lineage/lineageModel";
+import type { LineageView, TreeNode } from "../lineage/lineageModel";
 import { CarSilhouette } from "./CarSilhouette";
+
+/** ノードを一意に識別するキー（ネームプレート名＋年） */
+export const nodeKey = (n: Pick<TreeNode, "label" | "year">) => `${n.label}::${n.year}`;
 
 function Legend() {
   return (
@@ -25,7 +28,15 @@ function Legend() {
   );
 }
 
-export function GenealogySection({ view }: { view: LineageView }) {
+export function GenealogySection({
+  view,
+  selectedKey,
+  onSelect,
+}: {
+  view: LineageView;
+  selectedKey?: string | null;
+  onSelect?: (node: TreeNode) => void;
+}) {
   return (
     <section id="genealogy" className="mb-[88px] scroll-mt-6">
       <div className="mb-2 flex flex-wrap items-end justify-between gap-4">
@@ -103,19 +114,41 @@ export function GenealogySection({ view }: { view: LineageView }) {
               </div>
 
               {/* nodes */}
-              {view.nodes.map((n, i) => (
-                <div key={`node-${i}`} style={css(n.style)}>
-                  <div style={css(n.thumbStyle)}>
-                    <CarSilhouette color={n.silColor} width="78%" />
+              {view.nodes.map((n, i) => {
+                const selected = selectedKey === nodeKey(n);
+                return (
+                  <div
+                    key={`node-${i}`}
+                    role="button"
+                    tabIndex={0}
+                    aria-pressed={selected}
+                    aria-label={`${n.label} ${n.genLabel}（${n.year}年）`}
+                    onClick={() => onSelect?.(n)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        onSelect?.(n);
+                      }
+                    }}
+                    style={css(n.style)}
+                    className={
+                      selected
+                        ? "outline outline-2 outline-offset-2 outline-toyota-red"
+                        : "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-toyota-red"
+                    }
+                  >
+                    <div style={css(n.thumbStyle)}>
+                      <CarSilhouette color={n.silColor} width="78%" />
+                    </div>
+                    <span style={css(n.genStyle)}>{n.genLabel}</span>
+                    {n.isCurrent && (
+                      <span className="absolute -top-[9px] -right-[8px] rounded-pill border-[1.5px] border-toyota-red bg-white px-[6px] py-px text-[9px] font-extrabold tracking-[0.06em] text-toyota-red">
+                        現行
+                      </span>
+                    )}
                   </div>
-                  <span style={css(n.genStyle)}>{n.genLabel}</span>
-                  {n.isCurrent && (
-                    <span className="absolute -top-[9px] -right-[8px] rounded-pill border-[1.5px] border-toyota-red bg-white px-[6px] py-px text-[9px] font-extrabold tracking-[0.06em] text-toyota-red">
-                      現行
-                    </span>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

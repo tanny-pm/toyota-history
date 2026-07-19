@@ -20,6 +20,11 @@ export interface Nameplate {
   branchYear?: number;
   /** 世代の年リスト（左→右に並ぶノード） */
   generations: number[];
+  /**
+   * 世代ごとの解説文（キー = generations の年を文字列化）。
+   * ノードクリック時の詳細パネルに表示するプロトタイプ用のダミー文。任意。
+   */
+  overviews?: Record<string, string>;
 }
 
 export interface Genealogy {

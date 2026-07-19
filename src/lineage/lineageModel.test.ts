@@ -17,6 +17,14 @@ describe("buildLineageView", () => {
     expect(expected).toBe(4);
   });
 
+  it("ノードは label/year を持ち、overviews のある世代には overview が載る", () => {
+    const corolla2019 = view.nodes.find((n) => n.label === "カローラ" && n.year === 2019);
+    expect(corolla2019).toBeDefined();
+    expect(corolla2019?.genLabel).toBe("7代目");
+    expect(corolla2019?.isCurrent).toBe(true);
+    expect(corolla2019?.overview).toContain("TNGA");
+  });
+
   it("ホイールベース列(idx5)は最大=アルファード・最小=ヤリスに色分けされる", () => {
     const alphard = view.vehicleRows.find((v) => v.name === "アルファード");
     const yaris = view.vehicleRows.find((v) => v.name === "ヤリス");
