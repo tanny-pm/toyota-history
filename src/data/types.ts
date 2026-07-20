@@ -2,6 +2,8 @@
 // buildLineageView() はこれらを入力に受け取り、描画用の LineageView を組み立てる。
 // レイヤは3つ: 系譜（手書き）/ 現行車種マニフェスト＋列定義（手書き）/ 諸元（機械生成）。
 
+import type { CategoryId } from "./categories";
+
 // ---- 系譜レイヤ（手書き: data/genealogy.json） ----
 
 export type NameplateStatus = "active" | "discontinued";
@@ -11,6 +13,8 @@ export interface Nameplate {
   label: string;
   /** 補足ラベル（例: "1966–現行" / "派生 / カローラ"） */
   sub: string;
+  /** 樹形図のカテゴリ（グループ分割の所属先）。categories.ts の CategoryId のいずれか */
+  category: CategoryId;
   status: NameplateStatus;
   /** 現行世代の年（status=active のとき）。現行ノードの強調に使う */
   currentYear?: number;

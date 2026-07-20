@@ -1,95 +1,1178 @@
 {
   "nameplates": [
     {
-      "label": "レビン",
-      "sub": "派生 / カローラ",
+      "label": "クラウン",
+      "sub": "1955–現行",
+      "category": "sedan",
+      "status": "active",
+      "currentYear": 2022,
+      "generations": [
+        1955, 1962, 1967, 1971, 1974, 1979, 1983, 1987, 1991, 1995, 1999, 2003, 2008, 2012, 2018,
+        2022
+      ]
+    },
+    {
+      "label": "クラウンマジェスタ",
+      "sub": "派生 / クラウン",
+      "category": "sedan",
       "status": "discontinued",
-      "derivativeOf": "カローラ",
-      "branchYear": 1972,
-      "generations": [1972, 1983, 1991, 1998],
-      "overviews": {
-        "1972": "カローラをベースにDOHCエンジンを積んだスポーティ版として独立した初代。手頃な価格で走りの楽しさを広めた。",
-        "1983": "軽量なFRレイアウトが人気を博した世代。後年まで語り継がれる、走り好きの入門機となった。",
-        "1991": "バブル期の高性能化の波を受け、ツインカムやスーパーチャージャー仕様を設定した意欲作。",
-        "1998": "FF化と環境対応が進んだ最終世代。時代の変化とともに、やがて系譜に幕を下ろす布石となった。"
-      }
+      "derivativeOf": "クラウン",
+      "branchYear": 1991,
+      "generations": [1991, 1995, 1999, 2004, 2009, 2013]
+    },
+    {
+      "label": "センチュリー",
+      "sub": "1967–現行",
+      "category": "sedan",
+      "status": "active",
+      "currentYear": 2018,
+      "generations": [1967, 1997, 2018]
     },
     {
       "label": "カローラ",
       "sub": "1966–現行",
+      "category": "sedan",
       "status": "active",
       "currentYear": 2019,
-      "generations": [1966, 1972, 1979, 1987, 2000, 2012, 2019],
-      "overviews": {
-        "1966": "「プラス100ccの余裕」を掲げて登場した初代。大衆車市場を切り開いた、ベストセラーの原点。",
-        "1972": "ボディと快適性を拡大し、レビンなどスポーティ派生を生んだ拡大期の世代。",
-        "1979": "堅実なつくりが幅広い層に支持され、世界戦略車としての地位を固めた。",
-        "1987": "曲面基調のモダンなデザインへ刷新。FF化が進み、扱いやすさが大きく向上した。",
-        "2000": "新プラットフォームで居住性と安全性能を引き上げ、ファミリーカーの定番を更新した世代。",
-        "2012": "燃費と実用性を重視し、ハイブリッド需要にも本格対応した堅実な一台。",
-        "2019": "TNGA採用で走りと質感を一新した現行モデル。セダン・ツーリング・スポーツを揃える。"
-      }
+      "generations": [1966, 1970, 1974, 1979, 1983, 1987, 1991, 1995, 2000, 2006, 2012, 2019]
     },
     {
-      "label": "クラウン",
-      "sub": "1966–現行",
-      "status": "active",
-      "currentYear": 2022,
-      "generations": [1967, 1974, 1983, 1991, 2003, 2018, 2022],
-      "overviews": {
-        "1967": "日本の高級車の礎を築いた世代。オーナードライバー向けの快適性を追求した。",
-        "1974": "大型化と豪華装備で、「いつかはクラウン」という価値観を世に広めた。",
-        "1983": "直線基調の威風あるデザインで、いわゆるハイソカーブームを牽引した。",
-        "1991": "バブル期の集大成。静粛性と乗り心地を極めた、和製フラッグシップの理想形。",
-        "2003": "「ZERO CROWN」として走行性能を刷新し、若返りを図った転換点の世代。",
-        "2018": "コネクテッド機能を全面採用し、正統派セダンの新しい価値を提案した。",
-        "2022": "クロスオーバーへ大胆に転身した現行モデル。多彩なボディで新時代のクラウンを体現する。"
-      }
+      "label": "スプリンター",
+      "sub": "派生 / カローラ",
+      "category": "sedan",
+      "status": "discontinued",
+      "derivativeOf": "カローラ",
+      "branchYear": 1968,
+      "generations": [1968, 1970, 1974, 1979, 1983, 1987, 1991, 1995]
     },
     {
-      "label": "プラド",
-      "sub": "派生 / ランクル",
+      "label": "コロナ",
+      "sub": "1957–2001 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1957, 1960, 1964, 1970, 1973, 1978, 1982, 1987, 1992, 1996]
+    },
+    {
+      "label": "プレミオ",
+      "sub": "2001–2021 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [2001, 2007]
+    },
+    {
+      "label": "カリーナ",
+      "sub": "1970–2001 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1970, 1977, 1981, 1984, 1988, 1992, 1996]
+    },
+    {
+      "label": "カリーナED",
+      "sub": "派生 / カリーナ",
+      "category": "sedan",
+      "status": "discontinued",
+      "derivativeOf": "カリーナ",
+      "branchYear": 1985,
+      "generations": [1985, 1989, 1993]
+    },
+    {
+      "label": "アリオン",
+      "sub": "2001–2021 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [2001, 2007]
+    },
+    {
+      "label": "マークII",
+      "sub": "1968–2004 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1968, 1972, 1976, 1980, 1984, 1988, 1992, 1996, 2000]
+    },
+    {
+      "label": "チェイサー",
+      "sub": "派生 / マークII",
+      "category": "sedan",
+      "status": "discontinued",
+      "derivativeOf": "マークII",
+      "branchYear": 1977,
+      "generations": [1977, 1980, 1984, 1988, 1992, 1996]
+    },
+    {
+      "label": "クレスタ",
+      "sub": "派生 / マークII",
+      "category": "sedan",
+      "status": "discontinued",
+      "derivativeOf": "マークII",
+      "branchYear": 1980,
+      "generations": [1980, 1984, 1988, 1992, 1996]
+    },
+    {
+      "label": "マークX",
+      "sub": "2004–2019 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [2004, 2009]
+    },
+    {
+      "label": "ベロッサ",
+      "sub": "2001–2004 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [2001]
+    },
+    {
+      "label": "カムリ",
+      "sub": "1980–2023 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1980, 1982, 1986, 1990, 1994, 2001, 2006, 2011, 2017]
+    },
+    {
+      "label": "ビスタ",
+      "sub": "1982–2003 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1982, 1986, 1990, 1994, 1998]
+    },
+    {
+      "label": "ウィンダム",
+      "sub": "1991–2006 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1991, 1996, 2001]
+    },
+    {
+      "label": "セルシオ",
+      "sub": "1989–2006 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1989, 1994, 2000]
+    },
+    {
+      "label": "アリスト",
+      "sub": "1991–2005 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1991, 1997]
+    },
+    {
+      "label": "アルテッツァ",
+      "sub": "1998–2005 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1998]
+    },
+    {
+      "label": "プログレ",
+      "sub": "1998–2007 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [1998]
+    },
+    {
+      "label": "ブレビス",
+      "sub": "2001–2007 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [2001]
+    },
+    {
+      "label": "オリジン",
+      "sub": "2000–2001 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [2000]
+    },
+    {
+      "label": "SAI",
+      "sub": "2009–2017 廃番",
+      "category": "sedan",
+      "status": "discontinued",
+      "generations": [2009]
+    },
+    {
+      "label": "ミライ",
+      "sub": "2014–現行",
+      "category": "sedan",
       "status": "active",
       "currentYear": 2020,
-      "derivativeOf": "ランドクルーザー",
-      "branchYear": 1990,
-      "generations": [1990, 1996, 2002, 2009, 2020],
-      "overviews": {
-        "1990": "ランドクルーザーから派生した扱いやすい本格SUVとして独立した初代。",
-        "1996": "洗練された内外装で、都市部のユーザーにも支持を大きく広げた。",
-        "2002": "悪路走破性と日常の快適性を両立し、ミドルSUVの定番としての地位を固めた。",
-        "2009": "電子制御デバイスを充実させ、オンロード・オフロード両面の実力を高めた世代。",
-        "2020": "質実剛健なキープコンセプトで信頼性を磨いた現行モデル。"
-      }
+      "generations": [2014, 2020]
     },
     {
-      "label": "ランドクルーザー",
-      "sub": "1966–現行",
-      "status": "active",
-      "currentYear": 2021,
-      "generations": [1966, 1980, 1990, 1998, 2007, 2021],
-      "overviews": {
-        "1966": "世界の悪路で信頼を築いた、本格クロスカントリーの系譜を代表する世代。",
-        "1980": "快適性を加え、乗用ワゴンとしての需要にも応えた拡大期の一台。",
-        "1990": "内外装を上質化し、高級SUVとしての地位を確立した世代。",
-        "1998": "電子制御と安全装備を拡充し、世界市場での信頼を不動のものにした。",
-        "2007": "走破性と快適性を高い次元で融合させた、フラッグシップSUV。",
-        "2021": "GA-Fプラットフォーム採用で基本骨格から刷新された現行モデル。"
-      }
+      "label": "スポーツ800",
+      "sub": "1965–1969 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [1965]
+    },
+    {
+      "label": "2000GT",
+      "sub": "1967–1970 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [1967]
     },
     {
       "label": "セリカ",
       "sub": "1970–2006 廃番",
+      "category": "coupe-sports",
       "status": "discontinued",
-      "generations": [1970, 1977, 1985, 1994, 1999, 2006],
-      "overviews": {
-        "1970": "「ダルマ」の愛称で親しまれた、国産スペシャルティクーペの草分け的存在。",
-        "1977": "直線基調のデザインへ移行し、北米市場でも高い人気を集めた世代。",
-        "1985": "FF化と流麗なフォルムで、新世代のスポーティクーペへと転換した。",
-        "1994": "曲面豊かなデザインをまとい、GT-FOURがラリーの舞台でも活躍した。",
-        "1999": "軽量コンパクト化で走りの純度を高めた意欲作。",
-        "2006": "惜しまれつつ生産を終え、長い系譜に静かに幕を下ろした最終世代。"
-      }
+      "generations": [1970, 1977, 1981, 1985, 1989, 1993, 1999]
+    },
+    {
+      "label": "セリカXX",
+      "sub": "派生 / セリカ",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "derivativeOf": "セリカ",
+      "branchYear": 1978,
+      "generations": [1978, 1981]
+    },
+    {
+      "label": "スープラ",
+      "sub": "1986–2002 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "derivativeOf": "セリカXX",
+      "branchYear": 1986,
+      "generations": [1986, 1993]
+    },
+    {
+      "label": "GRスープラ",
+      "sub": "2019–現行",
+      "category": "coupe-sports",
+      "status": "active",
+      "currentYear": 2019,
+      "generations": [2019]
+    },
+    {
+      "label": "ソアラ",
+      "sub": "1981–2005 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [1981, 1986, 1991, 2001]
+    },
+    {
+      "label": "MR2",
+      "sub": "1984–1999 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [1984, 1989]
+    },
+    {
+      "label": "MR-S",
+      "sub": "1999–2007 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [1999]
+    },
+    {
+      "label": "86",
+      "sub": "2012–2021 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [2012]
+    },
+    {
+      "label": "GR86",
+      "sub": "2021–現行",
+      "category": "coupe-sports",
+      "status": "active",
+      "currentYear": 2021,
+      "generations": [2021]
+    },
+    {
+      "label": "カローラレビン",
+      "sub": "派生 / カローラ",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "derivativeOf": "カローラ",
+      "branchYear": 1972,
+      "generations": [1972, 1979, 1983, 1987, 1991, 1995]
+    },
+    {
+      "label": "スプリンタートレノ",
+      "sub": "派生 / スプリンター",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "derivativeOf": "スプリンター",
+      "branchYear": 1972,
+      "generations": [1972, 1979, 1983, 1987, 1991, 1995]
+    },
+    {
+      "label": "サイノス",
+      "sub": "1991–1999 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [1991, 1995]
+    },
+    {
+      "label": "セラ",
+      "sub": "1990–1996 廃番",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "generations": [1990]
+    },
+    {
+      "label": "カレン",
+      "sub": "派生 / セリカ",
+      "category": "coupe-sports",
+      "status": "discontinued",
+      "derivativeOf": "セリカ",
+      "branchYear": 1994,
+      "generations": [1994]
+    },
+    {
+      "label": "GRヤリス",
+      "sub": "2020–現行",
+      "category": "coupe-sports",
+      "status": "active",
+      "currentYear": 2020,
+      "derivativeOf": "ヤリス",
+      "branchYear": 2020,
+      "generations": [2020]
+    },
+    {
+      "label": "GRカローラ",
+      "sub": "2022–現行",
+      "category": "coupe-sports",
+      "status": "active",
+      "currentYear": 2022,
+      "derivativeOf": "カローラ",
+      "branchYear": 2022,
+      "generations": [2022]
+    },
+    {
+      "label": "ランドクルーザー",
+      "sub": "1951–現行",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2021,
+      "generations": [1951, 1960, 1980, 1989, 1998, 2007, 2021]
+    },
+    {
+      "label": "ランドクルーザープラド",
+      "sub": "派生 / ランドクルーザー",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2024,
+      "derivativeOf": "ランドクルーザー",
+      "branchYear": 1990,
+      "generations": [1990, 1996, 2002, 2009, 2024]
+    },
+    {
+      "label": "ランドクルーザー70",
+      "sub": "派生 / ランドクルーザー",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2023,
+      "derivativeOf": "ランドクルーザー",
+      "branchYear": 1984,
+      "generations": [1984, 2014, 2023]
+    },
+    {
+      "label": "RAV4",
+      "sub": "1994–現行",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2019,
+      "generations": [1994, 2000, 2005, 2019]
+    },
+    {
+      "label": "ハリアー",
+      "sub": "1997–現行",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2020,
+      "generations": [1997, 2003, 2013, 2020]
+    },
+    {
+      "label": "C-HR",
+      "sub": "2016–2023",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [2016]
+    },
+    {
+      "label": "ライズ",
+      "sub": "2019–現行",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2019,
+      "generations": [2019]
+    },
+    {
+      "label": "ヤリスクロス",
+      "sub": "2020–現行",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2020,
+      "generations": [2020]
+    },
+    {
+      "label": "カローラクロス",
+      "sub": "2021–現行",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2021,
+      "generations": [2021]
+    },
+    {
+      "label": "bZ4X",
+      "sub": "2022–現行",
+      "category": "suv",
+      "status": "active",
+      "currentYear": 2022,
+      "generations": [2022]
+    },
+    {
+      "label": "FJクルーザー",
+      "sub": "2010–2018",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [2010]
+    },
+    {
+      "label": "ハイラックスサーフ",
+      "sub": "派生 / ハイラックス",
+      "category": "suv",
+      "status": "discontinued",
+      "derivativeOf": "ハイラックス",
+      "branchYear": 1984,
+      "generations": [1984, 1989, 1995, 2002]
+    },
+    {
+      "label": "ラッシュ",
+      "sub": "2006–2016",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [2006]
+    },
+    {
+      "label": "キャミ",
+      "sub": "1999–2006",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [1999]
+    },
+    {
+      "label": "クルーガー",
+      "sub": "2000–2007",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [2000]
+    },
+    {
+      "label": "ヴァンガード",
+      "sub": "2007–2013",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [2007]
+    },
+    {
+      "label": "メガクルーザー",
+      "sub": "1996–2001",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [1996]
+    },
+    {
+      "label": "ブリザード",
+      "sub": "1980–1990",
+      "category": "suv",
+      "status": "discontinued",
+      "generations": [1980, 1984]
+    },
+    {
+      "label": "アルファード",
+      "sub": "2002–現行",
+      "category": "minivan-wagon",
+      "status": "active",
+      "currentYear": 2023,
+      "generations": [2002, 2008, 2015, 2023]
+    },
+    {
+      "label": "ヴェルファイア",
+      "sub": "派生 / アルファード",
+      "category": "minivan-wagon",
+      "status": "active",
+      "currentYear": 2023,
+      "derivativeOf": "アルファード",
+      "branchYear": 2008,
+      "generations": [2008, 2015, 2023]
+    },
+    {
+      "label": "ノア",
+      "sub": "2001–現行",
+      "category": "minivan-wagon",
+      "status": "active",
+      "currentYear": 2022,
+      "generations": [2001, 2007, 2014, 2022]
+    },
+    {
+      "label": "ヴォクシー",
+      "sub": "派生 / ノア",
+      "category": "minivan-wagon",
+      "status": "active",
+      "currentYear": 2022,
+      "derivativeOf": "ノア",
+      "branchYear": 2001,
+      "generations": [2001, 2007, 2014, 2022]
+    },
+    {
+      "label": "エスクァイア",
+      "sub": "派生 / ノア",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "derivativeOf": "ノア",
+      "branchYear": 2014,
+      "generations": [2014]
+    },
+    {
+      "label": "エスティマ",
+      "sub": "1990–2019 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1990, 2000, 2006]
+    },
+    {
+      "label": "シエンタ",
+      "sub": "2003–現行",
+      "category": "minivan-wagon",
+      "status": "active",
+      "currentYear": 2022,
+      "generations": [2003, 2015, 2022]
+    },
+    {
+      "label": "ウィッシュ",
+      "sub": "2003–2017 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2003, 2009]
+    },
+    {
+      "label": "イプサム",
+      "sub": "1996–2009 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1996, 2001]
+    },
+    {
+      "label": "ガイア",
+      "sub": "1998–2004 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1998]
+    },
+    {
+      "label": "ナディア",
+      "sub": "1998–2003 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1998]
+    },
+    {
+      "label": "アイシス",
+      "sub": "2004–2017 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2004]
+    },
+    {
+      "label": "ラウム",
+      "sub": "1997–2011 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1997, 2003]
+    },
+    {
+      "label": "ポルテ",
+      "sub": "2004–2020 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2004, 2012]
+    },
+    {
+      "label": "スペイド",
+      "sub": "派生 / ポルテ",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "derivativeOf": "ポルテ",
+      "branchYear": 2012,
+      "generations": [2012]
+    },
+    {
+      "label": "ルーミー",
+      "sub": "2016–現行",
+      "category": "minivan-wagon",
+      "status": "active",
+      "currentYear": 2016,
+      "generations": [2016]
+    },
+    {
+      "label": "タンク",
+      "sub": "派生 / ルーミー",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "derivativeOf": "ルーミー",
+      "branchYear": 2016,
+      "generations": [2016]
+    },
+    {
+      "label": "グランビア",
+      "sub": "1995–2002 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1995]
+    },
+    {
+      "label": "カローラスパシオ",
+      "sub": "1997–2007 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1997, 2001]
+    },
+    {
+      "label": "カローラルミオン",
+      "sub": "2007–2015 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2007]
+    },
+    {
+      "label": "ファンカーゴ",
+      "sub": "1999–2005 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1999]
+    },
+    {
+      "label": "スパーキー",
+      "sub": "2000–2003 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2000]
+    },
+    {
+      "label": "オーパ",
+      "sub": "2000–2005 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2000]
+    },
+    {
+      "label": "パッソセッテ",
+      "sub": "2008–2012 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2008]
+    },
+    {
+      "label": "プリウスα",
+      "sub": "派生 / プリウス",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "derivativeOf": "プリウス",
+      "branchYear": 2011,
+      "generations": [2011]
+    },
+    {
+      "label": "カルディナ",
+      "sub": "1992–2007 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1992, 1997, 2002]
+    },
+    {
+      "label": "マークIIブリット",
+      "sub": "派生 / マークII",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "derivativeOf": "マークII",
+      "branchYear": 2002,
+      "generations": [2002]
+    },
+    {
+      "label": "スプリンターカリブ",
+      "sub": "1982–2002 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [1982, 1988, 1995]
+    },
+    {
+      "label": "アベンシス",
+      "sub": "2003–2018 廃番",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "generations": [2003, 2011]
+    },
+    {
+      "label": "ビスタアルデオ",
+      "sub": "派生 / ビスタ",
+      "category": "minivan-wagon",
+      "status": "discontinued",
+      "derivativeOf": "ビスタ",
+      "branchYear": 1998,
+      "generations": [1998]
+    },
+    {
+      "label": "パブリカ",
+      "sub": "1961–1978",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [1961, 1969]
+    },
+    {
+      "label": "スターレット",
+      "sub": "1973–1999",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [1973, 1978, 1984, 1989, 1996]
+    },
+    {
+      "label": "ターセル",
+      "sub": "1978–1999",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [1978, 1982, 1986, 1990, 1994]
+    },
+    {
+      "label": "コルサ",
+      "sub": "1978–1999",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [1978, 1982, 1986, 1990, 1994]
+    },
+    {
+      "label": "カローラII",
+      "sub": "1982–1999",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [1982, 1986, 1990, 1994]
+    },
+    {
+      "label": "デュエット",
+      "sub": "1998–2004",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [1998]
+    },
+    {
+      "label": "ヤリス",
+      "sub": "1999–現行（旧ヴィッツ）",
+      "category": "compact",
+      "status": "active",
+      "currentYear": 2020,
+      "generations": [1999, 2005, 2010, 2020]
+    },
+    {
+      "label": "bB",
+      "sub": "2000–2016",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [2000, 2005]
+    },
+    {
+      "label": "ist",
+      "sub": "2002–2016",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [2002, 2007]
+    },
+    {
+      "label": "パッソ",
+      "sub": "2004–2023",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [2004, 2010, 2016]
+    },
+    {
+      "label": "ラクティス",
+      "sub": "2005–2016",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [2005, 2010]
+    },
+    {
+      "label": "iQ",
+      "sub": "2008–2016",
+      "category": "compact",
+      "status": "discontinued",
+      "generations": [2008]
+    },
+    {
+      "label": "プリウス",
+      "sub": "1997–現行",
+      "category": "compact",
+      "status": "active",
+      "currentYear": 2023,
+      "generations": [1997, 2003, 2009, 2015, 2023]
+    },
+    {
+      "label": "プリウスPHV",
+      "sub": "派生 / プリウス",
+      "category": "compact",
+      "status": "active",
+      "currentYear": 2023,
+      "derivativeOf": "プリウス",
+      "branchYear": 2012,
+      "generations": [2012, 2017, 2023]
+    },
+    {
+      "label": "アクア",
+      "sub": "2011–現行",
+      "category": "compact",
+      "status": "active",
+      "currentYear": 2021,
+      "generations": [2011, 2021]
+    },
+    {
+      "label": "ピクシス エポック",
+      "sub": "2012–現行",
+      "category": "kei",
+      "status": "active",
+      "currentYear": 2017,
+      "generations": [2012, 2017]
+    },
+    {
+      "label": "ピクシス バン",
+      "sub": "2011–現行",
+      "category": "kei",
+      "status": "active",
+      "currentYear": 2021,
+      "generations": [2011, 2021]
+    },
+    {
+      "label": "ピクシス トラック",
+      "sub": "2011–現行",
+      "category": "kei",
+      "status": "active",
+      "currentYear": 2014,
+      "generations": [2011, 2014]
+    },
+    {
+      "label": "ピクシス スペース",
+      "sub": "2011–2017",
+      "category": "kei",
+      "status": "discontinued",
+      "generations": [2011]
+    },
+    {
+      "label": "ピクシス メガ",
+      "sub": "2015–2022",
+      "category": "kei",
+      "status": "discontinued",
+      "generations": [2015]
+    },
+    {
+      "label": "ピクシス ジョイ",
+      "sub": "2016–2023",
+      "category": "kei",
+      "status": "discontinued",
+      "generations": [2016]
+    },
+    {
+      "label": "ハイエース",
+      "sub": "1967–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2004,
+      "generations": [1967, 1977, 1982, 1989, 2004]
+    },
+    {
+      "label": "レジアスエース",
+      "sub": "派生 / ハイエース",
+      "category": "commercial",
+      "status": "discontinued",
+      "derivativeOf": "ハイエース",
+      "branchYear": 1999,
+      "generations": [1999, 2004]
+    },
+    {
+      "label": "ハイラックス",
+      "sub": "1968–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2017,
+      "generations": [1968, 1972, 1978, 1983, 1988, 1997, 2017]
+    },
+    {
+      "label": "ダイナ",
+      "sub": "1959–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2011,
+      "generations": [1959, 1963, 1969, 1977, 1985, 1995, 1999, 2011]
+    },
+    {
+      "label": "トヨエース",
+      "sub": "1954–2020",
+      "category": "commercial",
+      "status": "discontinued",
+      "generations": [1954, 1964, 1971, 1979, 1985, 1995, 1999, 2011]
+    },
+    {
+      "label": "タウンエース",
+      "sub": "1976–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2008,
+      "generations": [1976, 1982, 1996, 2008]
+    },
+    {
+      "label": "ライトエース",
+      "sub": "1970–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2008,
+      "generations": [1970, 1979, 1985, 1996, 2008]
+    },
+    {
+      "label": "プロボックス",
+      "sub": "2002–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2002,
+      "generations": [2002]
+    },
+    {
+      "label": "サクシード",
+      "sub": "派生 / プロボックス",
+      "category": "commercial",
+      "status": "discontinued",
+      "derivativeOf": "プロボックス",
+      "branchYear": 2002,
+      "generations": [2002]
+    },
+    {
+      "label": "コースター",
+      "sub": "1969–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2017,
+      "generations": [1969, 1982, 1993, 2017]
+    },
+    {
+      "label": "ジャパンタクシー",
+      "sub": "2017–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2017,
+      "generations": [2017]
+    },
+    {
+      "label": "コンフォート",
+      "sub": "1995–2018",
+      "category": "commercial",
+      "status": "discontinued",
+      "generations": [1995]
+    },
+    {
+      "label": "クラウンコンフォート",
+      "sub": "派生 / コンフォート",
+      "category": "commercial",
+      "status": "discontinued",
+      "derivativeOf": "コンフォート",
+      "branchYear": 1995,
+      "generations": [1995]
+    },
+    {
+      "label": "ハイメディック",
+      "sub": "派生 / ハイエース",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2017,
+      "derivativeOf": "ハイエース",
+      "branchYear": 1992,
+      "generations": [1992, 2006, 2017]
+    },
+    {
+      "label": "カムロード",
+      "sub": "派生 / ダイナ",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 1999,
+      "derivativeOf": "ダイナ",
+      "branchYear": 1999,
+      "generations": [1999]
+    },
+    {
+      "label": "デリボーイ",
+      "sub": "1989–1995",
+      "category": "commercial",
+      "status": "discontinued",
+      "generations": [1989]
+    },
+    {
+      "label": "クイックデリバリー",
+      "sub": "1982–2016",
+      "category": "commercial",
+      "status": "discontinued",
+      "generations": [1982, 1995]
+    },
+    {
+      "label": "スタウト",
+      "sub": "1960–1989",
+      "category": "commercial",
+      "status": "discontinued",
+      "generations": [1960, 1979]
+    },
+    {
+      "label": "ミニエース",
+      "sub": "1967–1975",
+      "category": "commercial",
+      "status": "discontinued",
+      "generations": [1967]
+    },
+    {
+      "label": "SORA",
+      "sub": "2018–現行",
+      "category": "commercial",
+      "status": "active",
+      "currentYear": 2018,
+      "generations": [2018]
+    },
+    {
+      "label": "LS",
+      "sub": "2006–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2017,
+      "generations": [2006, 2017]
+    },
+    {
+      "label": "GS",
+      "sub": "2005–2020",
+      "category": "lexus",
+      "status": "discontinued",
+      "generations": [2005, 2012]
+    },
+    {
+      "label": "IS",
+      "sub": "2005–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2013,
+      "generations": [2005, 2013]
+    },
+    {
+      "label": "ES",
+      "sub": "2018–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2018,
+      "generations": [2018]
+    },
+    {
+      "label": "HS",
+      "sub": "2009–2018",
+      "category": "lexus",
+      "status": "discontinued",
+      "generations": [2009]
+    },
+    {
+      "label": "CT",
+      "sub": "2011–2021",
+      "category": "lexus",
+      "status": "discontinued",
+      "generations": [2011]
+    },
+    {
+      "label": "RC",
+      "sub": "2014–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2014,
+      "generations": [2014]
+    },
+    {
+      "label": "RC F",
+      "sub": "派生 / RC",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2014,
+      "derivativeOf": "RC",
+      "branchYear": 2014,
+      "generations": [2014]
+    },
+    {
+      "label": "LC",
+      "sub": "2017–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2017,
+      "generations": [2017]
+    },
+    {
+      "label": "SC",
+      "sub": "2005–2010",
+      "category": "lexus",
+      "status": "discontinued",
+      "generations": [2005]
+    },
+    {
+      "label": "UX",
+      "sub": "2018–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2018,
+      "generations": [2018]
+    },
+    {
+      "label": "NX",
+      "sub": "2014–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2021,
+      "generations": [2014, 2021]
+    },
+    {
+      "label": "RX",
+      "sub": "2009–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2022,
+      "generations": [2009, 2015, 2022]
+    },
+    {
+      "label": "LX",
+      "sub": "2015–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2022,
+      "generations": [2015, 2022]
+    },
+    {
+      "label": "RZ",
+      "sub": "2023–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2023,
+      "generations": [2023]
+    },
+    {
+      "label": "LM",
+      "sub": "2023–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2023,
+      "generations": [2023]
+    },
+    {
+      "label": "LBX",
+      "sub": "2023–現行",
+      "category": "lexus",
+      "status": "active",
+      "currentYear": 2023,
+      "generations": [2023]
+    },
+    {
+      "label": "LFA",
+      "sub": "2010–2012",
+      "category": "lexus",
+      "status": "discontinued",
+      "generations": [2010]
     }
   ]
 }

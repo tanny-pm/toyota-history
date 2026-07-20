@@ -3,8 +3,15 @@
 // レイアウト計算（タイムライン座標・SVG コネクタ・grid 列幅・諸元の最大/最小ハイライト）
 // と完成済みインライン CSS 文字列の生成だけを担う純粋・決定的な関数。
 // スタイル文字列はデザインモックのものをそのまま再現している。
+//
+// 樹形図はカテゴリ別の「自己完結サブトラック」に分割される（categories.ts の順）。
+// 各グループは自前の SVG・自前の高さ・グループローカル y 座標を持ち、
+// x 軸（xFor / ticks / trackW）だけを全グループで共有して年代を縦に揃える。
+// これにより折りたたみ（コンポーネント側の UI 関心）でグループをまたぐ座標再計算が
+// 不要になり、buildLineageView は折りたたみ状態から独立した純粋関数のまま保てる。
 
-import type { Genealogy, Lineup, PriceRange, SpecColumn, Specs } from "../data/types";
+import { CATEGORIES, type CategoryId } from "../data/categories";
+import type { Genealogy, Lineup, Nameplate, PriceRange, SpecColumn, Specs } from "../data/types";
 
 export interface LabelItem {
   name: string;
@@ -49,6 +56,24 @@ export type Connector =
   | { kind: "path"; d: string; stroke: string; strokeWidth: number; strokeDasharray: string }
   | { kind: "circle"; cx: number; cy: number; r: number; fill: string };
 
+/** カテゴリ1つ分の自己完結サブトラック（縦積みされる単位＝折りたたみの単位） */
+export interface LineageGroup {
+  id: CategoryId;
+  title: string;
+  /** このグループに属するネームプレート数（見出しに表示） */
+  count: number;
+  labelColStyle: string;
+  labels: LabelItem[];
+  ticks: Tick[];
+  nodes: TreeNode[];
+  connectors: Connector[];
+  /** 全グループ共有の幅（年代を縦に揃えるため） */
+  trackW: number;
+  /** このグループ固有の高さ */
+  trackH: number;
+  trackStyle: string;
+}
+
 export interface SpecCol {
   label: string;
   num?: boolean;
@@ -74,14 +99,10 @@ export interface VehicleRow {
 }
 
 export interface LineageView {
-  labelColStyle: string;
-  labels: LabelItem[];
-  ticks: Tick[];
-  nodes: TreeNode[];
-  connectors: Connector[];
-  trackW: number;
-  trackH: number;
-  trackStyle: string;
+  /** 全グループ共有の時間軸メタ（テスト・デバッグ用） */
+  axis: { Y0: number; Y1: number; trackW: number };
+  /** カテゴリ別サブトラック（CATEGORIES 順、空カテゴリは含まない） */
+  groups: LineageGroup[];
   specCols: SpecCol[];
   vehicleRows: VehicleRow[];
   compareHeadStyle: string;
@@ -98,47 +119,50 @@ const RED = "#EB0A1E",
   GREY1 = "#ECECED",
   GREY05 = "#F5F5F6";
 
+// ---- レイアウト定数（グループ幾何で共有） ----
+const NODE_H = 60,
+  CEN = 30, // ノード上端からの中心オフセット
+  START = 46, // グループ内 先頭ノードの top
+  TIGHT = 72, // 派生とその親の縦間隔（詰め）
+  LOOSE = 96; // 系統グループ間の縦間隔（余白）
+const AXIS = 34, // 年目盛り帯の高さ
+  NODE_W = 58; // ノード幅（旧66から微縮小。世代間隔が短い際の水平衝突を緩和）
+
 // 数値の表示整形（桁区切り。小数は保持）。例: 2850 → "2,850" / 22.4 → "22.4"
 const fmtNum = (n: number) => n.toLocaleString("ja-JP");
 
-export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Specs): LineageView {
-  const nameplates = genealogy.nameplates;
-
-  // ---- 縦位置レイアウト ----
+/**
+ * カテゴリ1つ分のサブトラックを組む。縦位置・ラベル・ノード・コネクタ・目盛りを
+ * グループローカル座標で算出する。x 軸（xFor / Y0 / Y1 / trackW）は呼び出し側から
+ * 共有で受け取り、全グループで年代を縦に揃える。
+ */
+function buildGroupTrack(
+  id: CategoryId,
+  title: string,
+  members: Nameplate[],
+  xFor: (y: number) => number,
+  Y0: number,
+  Y1: number,
+  trackW: number,
+): LineageGroup {
+  // ---- 縦位置レイアウト（グループ内ローカル） ----
   // 派生（derivativeOf）は配列上で親の直上に置く慣習。
   // 「派生→その親」の間は詰め、系統グループの境界には余白を入れる。
-  const NODE_H = 60,
-    CEN = 30, // ノード上端からの中心オフセット
-    START = 46, // 先頭ノードの top
-    TIGHT = 72, // 派生とその親の縦間隔（詰め）
-    LOOSE = 96; // 系統グループ間の縦間隔（余白）
-
   const ys: number[] = [];
-  nameplates.forEach((np, i) => {
+  members.forEach((np, i) => {
     if (i === 0) {
       ys.push(START);
       return;
     }
-    const prev = nameplates[i - 1];
-    // 直前が派生で、その親が今の行なら詰める（派生は親の直上）
+    const prev = members[i - 1];
+    // 直前が派生で、その親が今の行なら詰める（派生は親の直上・同一カテゴリ内）
     const isParentOfPrev = prev.derivativeOf != null && prev.derivativeOf === np.label;
     ys.push(ys[i - 1] + (isParentOfPrev ? TIGHT : LOOSE));
   });
-  const yByLabel = new Map(nameplates.map((np, i) => [np.label, ys[i]]));
+  const yByLabel = new Map(members.map((np, i) => [np.label, ys[i]]));
   const trackH = ys[ys.length - 1] + NODE_H + 34;
 
-  // ---- タイムライン幾何 ----
-  const allYears = nameplates.flatMap((np) => np.generations);
-  const Y0 = Math.min(...allYears),
-    Y1 = 2026, // 右端＝「現在」
-    PAD = 60,
-    PX = 30;
-  const xFor = (y: number) => PAD + (y - Y0) * PX;
-  const trackW = xFor(Y1) + 70;
-  const AXIS = 34,
-    NODE_W = 66;
-
-  // ---- 目盛り（1年ごと） ----
+  // ---- 目盛り（1年ごと・グループ高さに合わせる） ----
   const ticks: Tick[] = [];
   for (let y = Y0; y <= Y1; y++) {
     const x = xFor(y);
@@ -153,7 +177,7 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
 
   // ---- ネームプレート列（固定） ----
   const labelColStyle = `position:relative;width:132px;flex:none;background:${GREY05};border-right:1px solid ${GREY2};height:${trackH}px`;
-  const labels: LabelItem[] = nameplates.map((np, i) => ({
+  const labels: LabelItem[] = members.map((np, i) => ({
     name: np.label,
     sub: np.sub,
     color: np.status === "discontinued" ? GREY4 : GREY9,
@@ -163,7 +187,7 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
 
   // ---- ノード ----
   const nodes: TreeNode[] = [];
-  nameplates.forEach((np, i) => {
+  members.forEach((np, i) => {
     const top = ys[i];
     np.generations.forEach((year, gi) => {
       const x = xFor(year);
@@ -208,7 +232,7 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
 
   // ---- コネクタ ----
   const connectors: Connector[] = [];
-  nameplates.forEach((np, i) => {
+  members.forEach((np, i) => {
     const xs = np.generations.map(xFor);
     const y = ys[i] + CEN;
     const laneCol = np.status === "discontinued" ? GREY2 : GREY4;
@@ -222,7 +246,8 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
       strokeWidth: 3,
       strokeLinecap: "round",
     });
-    // 派生系統: 親レーンから枝分かれ年で分岐する破線＋分岐点
+    // 派生系統: 親レーンから枝分かれ年で分岐する破線＋分岐点。
+    // 親が同一グループ内にいる場合のみ描く（別カテゴリの派生は独立レーンへ縮退）。
     const parentY = np.derivativeOf != null ? yByLabel.get(np.derivativeOf) : undefined;
     if (np.branchYear != null && parentY != null) {
       const bx = xFor(np.branchYear);
@@ -239,6 +264,46 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
   });
 
   const trackStyle = `position:relative;width:${trackW}px;height:${trackH}px;background:#fff`;
+
+  return {
+    id,
+    title,
+    count: members.length,
+    labelColStyle,
+    labels,
+    ticks,
+    nodes,
+    connectors,
+    trackW,
+    trackH,
+    trackStyle,
+  };
+}
+
+export function buildLineageView(
+  genealogy: Genealogy,
+  lineup: Lineup,
+  specs: Specs,
+  nowYear = 2026,
+): LineageView {
+  const nameplates = genealogy.nameplates;
+
+  // ---- 共有タイムライン幾何 ----
+  const allYears = nameplates.flatMap((np) => np.generations);
+  const Y0 = Math.min(...allYears),
+    Y1 = Math.max(nowYear, ...allYears), // 右端＝「現在」（データが未来年を含んでも安全側）
+    PAD = 60,
+    PX = 30;
+  const xFor = (y: number) => PAD + (y - Y0) * PX;
+  const trackW = xFor(Y1) + 70;
+
+  // ---- カテゴリ別グループ化（CATEGORIES 順・配列内順序は保持） ----
+  const groups: LineageGroup[] = [];
+  for (const cat of CATEGORIES) {
+    const members = nameplates.filter((np) => np.category === cat.id);
+    if (members.length === 0) continue;
+    groups.push(buildGroupTrack(cat.id, cat.title, members, xFor, Y0, Y1, trackW));
+  }
 
   // ---- 諸元比較表（車種=行 / 諸元=列） ----
   // 表示列 = lineup.columns（ボディタイプ→寸法3列→…→価格）に、
@@ -364,14 +429,8 @@ export function buildLineageView(genealogy: Genealogy, lineup: Lineup, specs: Sp
   });
 
   return {
-    labelColStyle,
-    labels,
-    ticks,
-    nodes,
-    connectors,
-    trackW,
-    trackH,
-    trackStyle,
+    axis: { Y0, Y1, trackW },
+    groups,
     specCols,
     vehicleRows,
     compareHeadStyle,
