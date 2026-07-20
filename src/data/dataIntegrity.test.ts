@@ -7,6 +7,7 @@ import genealogyData from "../../data/genealogy.json";
 import lineupData from "../../data/lineup.json";
 import specsData from "../../data/specs.json";
 import type { Genealogy, Lineup, Specs, PriceRange } from "./types";
+import { isCategoryId } from "./categories";
 
 const genealogy = genealogyData as unknown as Genealogy;
 const lineup = lineupData as Lineup;
@@ -43,6 +44,12 @@ describe("系譜レイヤ（genealogy.json）", () => {
 
       it("status は active / discontinued のいずれか", () => {
         expect(["active", "discontinued"]).toContain(n.status);
+      });
+
+      it("category は既知のカテゴリ id である", () => {
+        expect(isCategoryId(n.category), `${n.label} の category「${n.category}」は未知`).toBe(
+          true,
+        );
       });
 
       it("派生元(derivativeOf)は実在するネームプレートを指し、branchYear を伴う", () => {

@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { css } from "../lib/css";
-import type { LineageView, TreeNode } from "../lineage/lineageModel";
+import type { LineageGroup, LineageView, TreeNode } from "../lineage/lineageModel";
 import { CarSilhouette } from "./CarSilhouette";
 
 /** ノードを一意に識別するキー（ネームプレート名＋年） */
@@ -28,34 +29,48 @@ function Legend() {
   );
 }
 
-export function GenealogySection({
-  view,
+/** カテゴリ1グループ分（見出し＋展開時のみ本体をマウント）。 */
+function CategoryGroup({
+  group,
+  open,
+  onToggle,
   selectedKey,
   onSelect,
 }: {
-  view: LineageView;
+  group: LineageGroup;
+  open: boolean;
+  onToggle: () => void;
   selectedKey?: string | null;
   onSelect?: (node: TreeNode) => void;
 }) {
   return (
-    <section id="genealogy" className="mb-[88px] scroll-mt-6">
-      <div className="mb-2 flex flex-wrap items-end justify-between gap-4">
-        <div>
-          <div className="mb-2 text-xs font-bold tracking-[0.14em] text-toyota-red">GENEALOGY</div>
-          <h2 className="m-0 text-[32px] font-bold tracking-[-0.02em]">系譜の樹形図</h2>
-        </div>
-        <Legend />
-      </div>
-      <p className="mt-0 mb-5 text-[13px] text-fg-subtle">← 横スクロールで年代を移動できます →</p>
+    <div className="border-b border-line last:border-b-0">
+      {/* カテゴリ見出し（縦スクロール追従・クリックで開閉） */}
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={open}
+        className="sticky top-0 z-30 flex w-full items-center gap-3 border-b border-line bg-surface px-5 py-3 text-left hover:bg-surface-sunken"
+      >
+        <span
+          className="text-[11px] text-fg-subtle transition-transform"
+          style={{ transform: open ? "rotate(90deg)" : "rotate(0deg)" }}
+          aria-hidden
+        >
+          ▶
+        </span>
+        <span className="text-[15px] font-bold tracking-[-0.01em] text-fg">{group.title}</span>
+        <span className="rounded-pill bg-surface-sunken px-2 py-px text-[11px] font-bold text-fg-subtle">
+          {group.count}
+        </span>
+      </button>
 
-      <div className="overflow-hidden rounded-lg border border-line bg-surface shadow-sm">
+      {/* 本体（展開時のみマウント＝実質的な仮想化） */}
+      {open && (
         <div className="flex">
           {/* fixed nameplate labels */}
-          <div style={css(view.labelColStyle)}>
-            <div className="absolute inset-x-0 top-0 flex h-[34px] items-center border-b border-line pl-4 text-[11px] font-bold tracking-[0.1em] text-fg-subtle">
-              ネームプレート
-            </div>
-            {view.labels.map((lb, i) => (
+          <div style={css(group.labelColStyle)}>
+            {group.labels.map((lb, i) => (
               <div key={i} style={css(lb.style)}>
                 <span className="text-sm font-bold leading-[1.2]" style={{ color: lb.color }}>
                   {lb.name}
@@ -67,9 +82,9 @@ export function GenealogySection({
 
           {/* scrollable track */}
           <div className="tl-scroll flex-1 overflow-x-auto">
-            <div style={css(view.trackStyle)}>
+            <div style={css(group.trackStyle)}>
               {/* year gridlines + labels */}
-              {view.ticks.map((tk, i) => (
+              {group.ticks.map((tk, i) => (
                 <div key={`tick-${i}`}>
                   <div style={css(tk.lineStyle)} />
                   <div style={css(tk.labelStyle)}>{tk.label}</div>
@@ -79,11 +94,11 @@ export function GenealogySection({
               {/* connector svg */}
               <div className="absolute top-0 left-0">
                 <svg
-                  width={view.trackW}
-                  height={view.trackH}
+                  width={group.trackW}
+                  height={group.trackH}
                   className="pointer-events-none absolute top-0 left-0 z-[1]"
                 >
-                  {view.connectors.map((c, i) => {
+                  {group.connectors.map((c, i) => {
                     if (c.kind === "line")
                       return (
                         <line
@@ -114,7 +129,7 @@ export function GenealogySection({
               </div>
 
               {/* nodes */}
-              {view.nodes.map((n, i) => {
+              {group.nodes.map((n, i) => {
                 const selected = selectedKey === nodeKey(n);
                 return (
                   <div
@@ -152,6 +167,68 @@ export function GenealogySection({
             </div>
           </div>
         </div>
+      )}
+    </div>
+  );
+}
+
+export function GenealogySection({
+  view,
+  selectedKey,
+  onSelect,
+}: {
+  view: LineageView;
+  selectedKey?: string | null;
+  onSelect?: (node: TreeNode) => void;
+}) {
+  // 折りたたみ状態。既定は先頭カテゴリのみ展開（初期 DOM 量を抑える）。
+  const [open, setOpen] = useState<Record<string, boolean>>(() =>
+    view.groups.length > 0 ? { [view.groups[0].id]: true } : {},
+  );
+  const setAll = (val: boolean) => setOpen(Object.fromEntries(view.groups.map((g) => [g.id, val])));
+
+  return (
+    <section id="genealogy" className="mb-[88px] scroll-mt-6">
+      <div className="mb-2 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div className="mb-2 text-xs font-bold tracking-[0.14em] text-toyota-red">GENEALOGY</div>
+          <h2 className="m-0 text-[32px] font-bold tracking-[-0.02em]">系譜の樹形図</h2>
+        </div>
+        <Legend />
+      </div>
+      <div className="mt-0 mb-5 flex flex-wrap items-center justify-between gap-3">
+        <p className="m-0 text-[13px] text-fg-subtle">
+          カテゴリ見出しをクリックで開閉／← 横スクロールで年代を移動 →
+        </p>
+        <div className="flex items-center gap-2 text-[12px]">
+          <button
+            type="button"
+            onClick={() => setAll(true)}
+            className="rounded-md border border-line px-3 py-1 font-semibold text-fg-muted hover:bg-surface-sunken"
+          >
+            すべて展開
+          </button>
+          <button
+            type="button"
+            onClick={() => setAll(false)}
+            className="rounded-md border border-line px-3 py-1 font-semibold text-fg-muted hover:bg-surface-sunken"
+          >
+            すべて畳む
+          </button>
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-line bg-surface shadow-sm">
+        {view.groups.map((group) => (
+          <CategoryGroup
+            key={group.id}
+            group={group}
+            open={!!open[group.id]}
+            onToggle={() => setOpen((prev) => ({ ...prev, [group.id]: !prev[group.id] }))}
+            selectedKey={selectedKey}
+            onSelect={onSelect}
+          />
+        ))}
       </div>
     </section>
   );

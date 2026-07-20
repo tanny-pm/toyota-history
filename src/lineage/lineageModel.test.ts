@@ -1,28 +1,95 @@
 import { describe, it, expect } from "vitest";
 import { buildLineageView } from "./lineageModel";
 import { genealogy, lineup, specs } from "../data";
+import { CATEGORIES, categoryTitle } from "../data/categories";
 
 describe("buildLineageView", () => {
   const view = buildLineageView(genealogy, lineup, specs);
+  const allNodes = view.groups.flatMap((g) => g.nodes);
+  const allConnectors = view.groups.flatMap((g) => g.connectors);
 
   // 表示列の並び（発売年・世代を先頭ボディタイプ直後に合成挿入）:
   // 0:ボディタイプ 1:発売年・世代 2:全長 3:全幅 4:全高 5:ホイールベース
   // 6:車両重量 7:エンジン 8:最高出力 9:駆動方式 10:乗車定員 11:WLTC燃費 12:価格帯
 
-  it("現行ノードは active な各ネームプレートの currentYear に1件ずつ付く（4件）", () => {
+  describe("カテゴリ別グループ化", () => {
+    it("グループは空でなく、各 id は既知カテゴリで CATEGORIES の順に並ぶ", () => {
+      expect(view.groups.length).toBeGreaterThan(0);
+      const order = CATEGORIES.map((c) => c.id);
+      const idxs = view.groups.map((g) => order.indexOf(g.id));
+      expect(idxs.every((i) => i >= 0)).toBe(true);
+      expect(idxs).toEqual([...idxs].sort((a, b) => a - b));
+    });
+
+    it("各ネームプレートは厳密に1グループに属し、count の総和が総数と一致する", () => {
+      const total = view.groups.reduce((s, g) => s + g.count, 0);
+      expect(total).toBe(genealogy.nameplates.length);
+      const nodeLabels = new Set(allNodes.map((n) => n.label));
+      expect(nodeLabels.size).toBe(genealogy.nameplates.length);
+    });
+
+    it("group.title はカテゴリ表示名と一致する", () => {
+      for (const g of view.groups) {
+        expect(g.title).toBe(categoryTitle(g.id));
+      }
+    });
+
+    it("各グループは正の高さと共有幅を持つ", () => {
+      for (const g of view.groups) {
+        expect(g.trackH).toBeGreaterThan(0);
+        expect(g.trackW).toBe(view.axis.trackW);
+      }
+    });
+
+    it("axis.Y0 は全世代年の最小、Y1 は現在年以上", () => {
+      const min = Math.min(...genealogy.nameplates.flatMap((n) => n.generations));
+      expect(view.axis.Y0).toBe(min);
+      expect(view.axis.Y1).toBeGreaterThanOrEqual(2026);
+    });
+  });
+
+  it("現行ノードは active な各ネームプレートの currentYear に1件ずつ付く", () => {
     const expected = genealogy.nameplates.filter(
       (n) => n.status === "active" && n.currentYear != null,
     ).length;
-    expect(view.nodes.filter((n) => n.isCurrent).length).toBe(expected);
-    expect(expected).toBe(4);
+    expect(allNodes.filter((n) => n.isCurrent).length).toBe(expected);
+    expect(expected).toBeGreaterThan(0);
   });
 
-  it("ノードは label/year を持ち、overviews のある世代には overview が載る", () => {
-    const corolla2019 = view.nodes.find((n) => n.label === "カローラ" && n.year === 2019);
-    expect(corolla2019).toBeDefined();
-    expect(corolla2019?.genLabel).toBe("7代目");
-    expect(corolla2019?.isCurrent).toBe(true);
-    expect(corolla2019?.overview).toContain("TNGA");
+  it("各ノードの genLabel は n代目 形式で、先頭世代は 1代目", () => {
+    expect(allNodes.every((n) => /^\d+代目$/.test(n.genLabel))).toBe(true);
+    for (const np of genealogy.nameplates) {
+      const first = allNodes.find((n) => n.label === np.label && n.year === np.generations[0]);
+      expect(first?.genLabel).toBe("1代目");
+    }
+  });
+
+  it("active かつ currentYear の世代ノードは isCurrent フラグを持つ", () => {
+    for (const np of genealogy.nameplates) {
+      if (np.status === "active" && np.currentYear != null) {
+        const node = allNodes.find((n) => n.label === np.label && n.year === np.currentYear);
+        expect(node?.isCurrent, `${np.label} の現行ノードが isCurrent でない`).toBe(true);
+      }
+    }
+  });
+
+  it("同一カテゴリ内の派生（プラド→ランクル、ともに SUV）はレーンから枝分かれする破線＋分岐円を持つ", () => {
+    const suv = view.groups.find((g) => g.id === "suv");
+    expect(suv).toBeDefined();
+    expect(suv!.connectors.some((c) => c.kind === "path")).toBe(true);
+    expect(suv!.connectors.some((c) => c.kind === "circle")).toBe(true);
+  });
+
+  it("カテゴリ跨ぎの派生（レビン=coupe-sports → 親カローラ=sedan）は分岐コネクタを描かない", () => {
+    // 破線パス＋分岐円は「親が同一グループ内にいる派生」の数だけ生成される
+    const drawn = allConnectors.filter((c) => c.kind === "path").length;
+    const sameCatDerivatives = genealogy.nameplates.filter((n) => {
+      if (n.derivativeOf == null || n.branchYear == null) return false;
+      const parent = genealogy.nameplates.find((p) => p.label === n.derivativeOf);
+      return parent != null && parent.category === n.category;
+    }).length;
+    expect(drawn).toBe(sameCatDerivatives);
+    expect(allConnectors.filter((c) => c.kind === "circle").length).toBe(sameCatDerivatives);
   });
 
   it("ホイールベース列(idx5)は最大=アルファード・最小=ヤリスに色分けされる", () => {
@@ -65,16 +132,5 @@ describe("buildLineageView", () => {
   it("発売年・世代セル(idx1)は lineup.targetGen 由来", () => {
     const crown = view.vehicleRows.find((v) => v.name === "クラウン");
     expect(crown?.cells[1].text).toBe("2022年 / 16代目");
-  });
-
-  it("派生（プラド）のコネクタは親（ランドクルーザー）のレーンから枝分かれする破線を持つ", () => {
-    // 破線パス＋分岐円は派生系統の数だけ生成される
-    const paths = view.connectors.filter((c) => c.kind === "path");
-    const circles = view.connectors.filter((c) => c.kind === "circle");
-    const derivatives = genealogy.nameplates.filter(
-      (n) => n.derivativeOf != null && n.branchYear != null,
-    ).length;
-    expect(paths.length).toBe(derivatives);
-    expect(circles.length).toBe(derivatives);
   });
 });

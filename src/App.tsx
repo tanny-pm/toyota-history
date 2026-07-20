@@ -10,7 +10,8 @@ export default function App() {
   const view = buildLineageView(genealogy, lineup, specs);
   // 選択中ノードのキー（label::year）。null なら詳細パネルは閉じている。
   const [selectedKey, setSelectedKey] = useState<string | null>(null);
-  const selectedNode = view.nodes.find((n) => nodeKey(n) === selectedKey) ?? null;
+  const selectedNode =
+    view.groups.flatMap((g) => g.nodes).find((n) => nodeKey(n) === selectedKey) ?? null;
 
   // 同じノードを再クリックしたら閉じる（トグル）。
   const handleSelect = (node: TreeNode) =>
