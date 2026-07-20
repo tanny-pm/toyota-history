@@ -141,9 +141,6 @@ export function DetailPanel({
                       : "この系統の諸元データは未掲載です。"}
                   </p>
                 )}
-                <p className="mt-3 mb-0 text-[11px] text-fg-subtle">
-                  ※ 解説文・諸元はプロトタイプ用のダミーデータです。
-                </p>
               </section>
             </div>
           </>
