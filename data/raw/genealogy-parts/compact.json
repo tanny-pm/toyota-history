@@ -1,0 +1,113 @@
+[
+  {
+    "label": "パブリカ",
+    "sub": "1961–1978",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [1961, 1969]
+  },
+  {
+    "label": "スターレット",
+    "sub": "1973–1999",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [1973, 1978, 1984, 1989, 1996]
+  },
+  {
+    "label": "ターセル",
+    "sub": "1978–1999",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [1978, 1982, 1986, 1990, 1994]
+  },
+  {
+    "label": "コルサ",
+    "sub": "1978–1999",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [1978, 1982, 1986, 1990, 1994]
+  },
+  {
+    "label": "カローラII",
+    "sub": "1982–1999",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [1982, 1986, 1990, 1994]
+  },
+  {
+    "label": "デュエット",
+    "sub": "1998–2004",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [1998]
+  },
+  {
+    "label": "ヤリス",
+    "sub": "1999–現行（旧ヴィッツ）",
+    "category": "compact",
+    "status": "active",
+    "currentYear": 2020,
+    "generations": [1999, 2005, 2010, 2020]
+  },
+  {
+    "label": "bB",
+    "sub": "2000–2016",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [2000, 2005]
+  },
+  {
+    "label": "ist",
+    "sub": "2002–2016",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [2002, 2007]
+  },
+  {
+    "label": "パッソ",
+    "sub": "2004–2023",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [2004, 2010, 2016]
+  },
+  {
+    "label": "ラクティス",
+    "sub": "2005–2016",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [2005, 2010]
+  },
+  {
+    "label": "iQ",
+    "sub": "2008–2016",
+    "category": "compact",
+    "status": "discontinued",
+    "generations": [2008]
+  },
+  {
+    "label": "プリウス",
+    "sub": "1997–現行",
+    "category": "compact",
+    "status": "active",
+    "currentYear": 2023,
+    "generations": [1997, 2003, 2009, 2015, 2023]
+  },
+  {
+    "label": "プリウスPHV",
+    "sub": "派生 / プリウス",
+    "category": "compact",
+    "status": "active",
+    "currentYear": 2023,
+    "derivativeOf": "プリウス",
+    "branchYear": 2012,
+    "generations": [2012, 2017, 2023]
+  },
+  {
+    "label": "アクア",
+    "sub": "2011–現行",
+    "category": "compact",
+    "status": "active",
+    "currentYear": 2021,
+    "generations": [2011, 2021]
+  }
+]

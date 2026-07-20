@@ -1,0 +1,143 @@
+[
+  {
+    "label": "LS",
+    "sub": "2006–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2017,
+    "generations": [2006, 2017]
+  },
+  {
+    "label": "GS",
+    "sub": "2005–2020",
+    "category": "lexus",
+    "status": "discontinued",
+    "generations": [2005, 2012]
+  },
+  {
+    "label": "IS",
+    "sub": "2005–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2013,
+    "generations": [2005, 2013]
+  },
+  {
+    "label": "ES",
+    "sub": "2018–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2018,
+    "generations": [2018]
+  },
+  {
+    "label": "HS",
+    "sub": "2009–2018",
+    "category": "lexus",
+    "status": "discontinued",
+    "generations": [2009]
+  },
+  {
+    "label": "CT",
+    "sub": "2011–2021",
+    "category": "lexus",
+    "status": "discontinued",
+    "generations": [2011]
+  },
+  {
+    "label": "RC",
+    "sub": "2014–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2014,
+    "generations": [2014]
+  },
+  {
+    "label": "RC F",
+    "sub": "派生 / RC",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2014,
+    "derivativeOf": "RC",
+    "branchYear": 2014,
+    "generations": [2014]
+  },
+  {
+    "label": "LC",
+    "sub": "2017–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2017,
+    "generations": [2017]
+  },
+  {
+    "label": "SC",
+    "sub": "2005–2010",
+    "category": "lexus",
+    "status": "discontinued",
+    "generations": [2005]
+  },
+  {
+    "label": "UX",
+    "sub": "2018–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2018,
+    "generations": [2018]
+  },
+  {
+    "label": "NX",
+    "sub": "2014–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2021,
+    "generations": [2014, 2021]
+  },
+  {
+    "label": "RX",
+    "sub": "2009–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2022,
+    "generations": [2009, 2015, 2022]
+  },
+  {
+    "label": "LX",
+    "sub": "2015–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2022,
+    "generations": [2015, 2022]
+  },
+  {
+    "label": "RZ",
+    "sub": "2023–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2023,
+    "generations": [2023]
+  },
+  {
+    "label": "LM",
+    "sub": "2023–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2023,
+    "generations": [2023]
+  },
+  {
+    "label": "LBX",
+    "sub": "2023–現行",
+    "category": "lexus",
+    "status": "active",
+    "currentYear": 2023,
+    "generations": [2023]
+  },
+  {
+    "label": "LFA",
+    "sub": "2010–2012",
+    "category": "lexus",
+    "status": "discontinued",
+    "generations": [2010]
+  }
+]
