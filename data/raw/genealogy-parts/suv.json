@@ -1,0 +1,143 @@
+[
+  {
+    "label": "ランドクルーザー",
+    "sub": "1951–現行",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2021,
+    "generations": [1951, 1960, 1980, 1989, 1998, 2007, 2021]
+  },
+  {
+    "label": "ランドクルーザープラド",
+    "sub": "派生 / ランドクルーザー",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2024,
+    "derivativeOf": "ランドクルーザー",
+    "branchYear": 1990,
+    "generations": [1990, 1996, 2002, 2009, 2024]
+  },
+  {
+    "label": "ランドクルーザー70",
+    "sub": "派生 / ランドクルーザー",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2023,
+    "derivativeOf": "ランドクルーザー",
+    "branchYear": 1984,
+    "generations": [1984, 2014, 2023]
+  },
+  {
+    "label": "RAV4",
+    "sub": "1994–現行",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2019,
+    "generations": [1994, 2000, 2005, 2019]
+  },
+  {
+    "label": "ハリアー",
+    "sub": "1997–現行",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2020,
+    "generations": [1997, 2003, 2013, 2020]
+  },
+  {
+    "label": "C-HR",
+    "sub": "2016–2023",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [2016]
+  },
+  {
+    "label": "ライズ",
+    "sub": "2019–現行",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2019,
+    "generations": [2019]
+  },
+  {
+    "label": "ヤリスクロス",
+    "sub": "2020–現行",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2020,
+    "generations": [2020]
+  },
+  {
+    "label": "カローラクロス",
+    "sub": "2021–現行",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2021,
+    "generations": [2021]
+  },
+  {
+    "label": "bZ4X",
+    "sub": "2022–現行",
+    "category": "suv",
+    "status": "active",
+    "currentYear": 2022,
+    "generations": [2022]
+  },
+  {
+    "label": "FJクルーザー",
+    "sub": "2010–2018",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [2010]
+  },
+  {
+    "label": "ハイラックスサーフ",
+    "sub": "派生 / ハイラックス",
+    "category": "suv",
+    "status": "discontinued",
+    "derivativeOf": "ハイラックス",
+    "branchYear": 1984,
+    "generations": [1984, 1989, 1995, 2002]
+  },
+  {
+    "label": "ラッシュ",
+    "sub": "2006–2016",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [2006]
+  },
+  {
+    "label": "キャミ",
+    "sub": "1999–2006",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [1999]
+  },
+  {
+    "label": "クルーガー",
+    "sub": "2000–2007",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [2000]
+  },
+  {
+    "label": "ヴァンガード",
+    "sub": "2007–2013",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [2007]
+  },
+  {
+    "label": "メガクルーザー",
+    "sub": "1996–2001",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [1996]
+  },
+  {
+    "label": "ブリザード",
+    "sub": "1980–1990",
+    "category": "suv",
+    "status": "discontinued",
+    "generations": [1980, 1984]
+  }
+]

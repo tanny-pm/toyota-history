@@ -1,0 +1,146 @@
+[
+  {
+    "label": "スポーツ800",
+    "sub": "1965–1969 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1965]
+  },
+  {
+    "label": "2000GT",
+    "sub": "1967–1970 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1967]
+  },
+  {
+    "label": "セリカ",
+    "sub": "1970–2006 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1970, 1977, 1981, 1985, 1989, 1993, 1999]
+  },
+  {
+    "label": "セリカXX",
+    "sub": "派生 / セリカ",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "derivativeOf": "セリカ",
+    "branchYear": 1978,
+    "generations": [1978, 1981]
+  },
+  {
+    "label": "スープラ",
+    "sub": "1986–2002 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "derivativeOf": "セリカXX",
+    "branchYear": 1986,
+    "generations": [1986, 1993]
+  },
+  {
+    "label": "GRスープラ",
+    "sub": "2019–現行",
+    "category": "coupe-sports",
+    "status": "active",
+    "currentYear": 2019,
+    "generations": [2019]
+  },
+  {
+    "label": "ソアラ",
+    "sub": "1981–2005 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1981, 1986, 1991, 2001]
+  },
+  {
+    "label": "MR2",
+    "sub": "1984–1999 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1984, 1989]
+  },
+  {
+    "label": "MR-S",
+    "sub": "1999–2007 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1999]
+  },
+  {
+    "label": "86",
+    "sub": "2012–2021 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [2012]
+  },
+  {
+    "label": "GR86",
+    "sub": "2021–現行",
+    "category": "coupe-sports",
+    "status": "active",
+    "currentYear": 2021,
+    "generations": [2021]
+  },
+  {
+    "label": "カローラレビン",
+    "sub": "派生 / カローラ",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "derivativeOf": "カローラ",
+    "branchYear": 1972,
+    "generations": [1972, 1979, 1983, 1987, 1991, 1995]
+  },
+  {
+    "label": "スプリンタートレノ",
+    "sub": "派生 / スプリンター",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "derivativeOf": "スプリンター",
+    "branchYear": 1972,
+    "generations": [1972, 1979, 1983, 1987, 1991, 1995]
+  },
+  {
+    "label": "サイノス",
+    "sub": "1991–1999 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1991, 1995]
+  },
+  {
+    "label": "セラ",
+    "sub": "1990–1996 廃番",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "generations": [1990]
+  },
+  {
+    "label": "カレン",
+    "sub": "派生 / セリカ",
+    "category": "coupe-sports",
+    "status": "discontinued",
+    "derivativeOf": "セリカ",
+    "branchYear": 1994,
+    "generations": [1994]
+  },
+  {
+    "label": "GRヤリス",
+    "sub": "2020–現行",
+    "category": "coupe-sports",
+    "status": "active",
+    "currentYear": 2020,
+    "derivativeOf": "ヤリス",
+    "branchYear": 2020,
+    "generations": [2020]
+  },
+  {
+    "label": "GRカローラ",
+    "sub": "2022–現行",
+    "category": "coupe-sports",
+    "status": "active",
+    "currentYear": 2022,
+    "derivativeOf": "カローラ",
+    "branchYear": 2022,
+    "generations": [2022]
+  }
+]

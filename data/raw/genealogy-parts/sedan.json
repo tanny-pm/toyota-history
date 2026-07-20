@@ -1,0 +1,200 @@
+[
+  {
+    "label": "クラウン",
+    "sub": "1955–現行",
+    "category": "sedan",
+    "status": "active",
+    "currentYear": 2022,
+    "generations": [
+      1955, 1962, 1967, 1971, 1974, 1979, 1983, 1987, 1991, 1995, 1999, 2003, 2008, 2012, 2018, 2022
+    ]
+  },
+  {
+    "label": "クラウンマジェスタ",
+    "sub": "派生 / クラウン",
+    "category": "sedan",
+    "status": "discontinued",
+    "derivativeOf": "クラウン",
+    "branchYear": 1991,
+    "generations": [1991, 1995, 1999, 2004, 2009, 2013]
+  },
+  {
+    "label": "センチュリー",
+    "sub": "1967–現行",
+    "category": "sedan",
+    "status": "active",
+    "currentYear": 2018,
+    "generations": [1967, 1997, 2018]
+  },
+  {
+    "label": "カローラ",
+    "sub": "1966–現行",
+    "category": "sedan",
+    "status": "active",
+    "currentYear": 2019,
+    "generations": [1966, 1970, 1974, 1979, 1983, 1987, 1991, 1995, 2000, 2006, 2012, 2019]
+  },
+  {
+    "label": "スプリンター",
+    "sub": "派生 / カローラ",
+    "category": "sedan",
+    "status": "discontinued",
+    "derivativeOf": "カローラ",
+    "branchYear": 1968,
+    "generations": [1968, 1970, 1974, 1979, 1983, 1987, 1991, 1995]
+  },
+  {
+    "label": "コロナ",
+    "sub": "1957–2001 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1957, 1960, 1964, 1970, 1973, 1978, 1982, 1987, 1992, 1996]
+  },
+  {
+    "label": "プレミオ",
+    "sub": "2001–2021 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [2001, 2007]
+  },
+  {
+    "label": "カリーナ",
+    "sub": "1970–2001 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1970, 1977, 1981, 1984, 1988, 1992, 1996]
+  },
+  {
+    "label": "カリーナED",
+    "sub": "派生 / カリーナ",
+    "category": "sedan",
+    "status": "discontinued",
+    "derivativeOf": "カリーナ",
+    "branchYear": 1985,
+    "generations": [1985, 1989, 1993]
+  },
+  {
+    "label": "アリオン",
+    "sub": "2001–2021 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [2001, 2007]
+  },
+  {
+    "label": "マークII",
+    "sub": "1968–2004 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1968, 1972, 1976, 1980, 1984, 1988, 1992, 1996, 2000]
+  },
+  {
+    "label": "チェイサー",
+    "sub": "派生 / マークII",
+    "category": "sedan",
+    "status": "discontinued",
+    "derivativeOf": "マークII",
+    "branchYear": 1977,
+    "generations": [1977, 1980, 1984, 1988, 1992, 1996]
+  },
+  {
+    "label": "クレスタ",
+    "sub": "派生 / マークII",
+    "category": "sedan",
+    "status": "discontinued",
+    "derivativeOf": "マークII",
+    "branchYear": 1980,
+    "generations": [1980, 1984, 1988, 1992, 1996]
+  },
+  {
+    "label": "マークX",
+    "sub": "2004–2019 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [2004, 2009]
+  },
+  {
+    "label": "ベロッサ",
+    "sub": "2001–2004 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [2001]
+  },
+  {
+    "label": "カムリ",
+    "sub": "1980–2023 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1980, 1982, 1986, 1990, 1994, 2001, 2006, 2011, 2017]
+  },
+  {
+    "label": "ビスタ",
+    "sub": "1982–2003 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1982, 1986, 1990, 1994, 1998]
+  },
+  {
+    "label": "ウィンダム",
+    "sub": "1991–2006 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1991, 1996, 2001]
+  },
+  {
+    "label": "セルシオ",
+    "sub": "1989–2006 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1989, 1994, 2000]
+  },
+  {
+    "label": "アリスト",
+    "sub": "1991–2005 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1991, 1997]
+  },
+  {
+    "label": "アルテッツァ",
+    "sub": "1998–2005 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1998]
+  },
+  {
+    "label": "プログレ",
+    "sub": "1998–2007 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [1998]
+  },
+  {
+    "label": "ブレビス",
+    "sub": "2001–2007 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [2001]
+  },
+  {
+    "label": "オリジン",
+    "sub": "2000–2001 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [2000]
+  },
+  {
+    "label": "SAI",
+    "sub": "2009–2017 廃番",
+    "category": "sedan",
+    "status": "discontinued",
+    "generations": [2009]
+  },
+  {
+    "label": "ミライ",
+    "sub": "2014–現行",
+    "category": "sedan",
+    "status": "active",
+    "currentYear": 2020,
+    "generations": [2014, 2020]
+  }
+]

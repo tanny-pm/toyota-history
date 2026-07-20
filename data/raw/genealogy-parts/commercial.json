@@ -1,0 +1,163 @@
+[
+  {
+    "label": "ハイエース",
+    "sub": "1967–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2004,
+    "generations": [1967, 1977, 1982, 1989, 2004]
+  },
+  {
+    "label": "レジアスエース",
+    "sub": "派生 / ハイエース",
+    "category": "commercial",
+    "status": "discontinued",
+    "derivativeOf": "ハイエース",
+    "branchYear": 1999,
+    "generations": [1999, 2004]
+  },
+  {
+    "label": "ハイラックス",
+    "sub": "1968–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2017,
+    "generations": [1968, 1972, 1978, 1983, 1988, 1997, 2017]
+  },
+  {
+    "label": "ダイナ",
+    "sub": "1959–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2011,
+    "generations": [1959, 1963, 1969, 1977, 1985, 1995, 1999, 2011]
+  },
+  {
+    "label": "トヨエース",
+    "sub": "1954–2020",
+    "category": "commercial",
+    "status": "discontinued",
+    "generations": [1954, 1964, 1971, 1979, 1985, 1995, 1999, 2011]
+  },
+  {
+    "label": "タウンエース",
+    "sub": "1976–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2008,
+    "generations": [1976, 1982, 1996, 2008]
+  },
+  {
+    "label": "ライトエース",
+    "sub": "1970–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2008,
+    "generations": [1970, 1979, 1985, 1996, 2008]
+  },
+  {
+    "label": "プロボックス",
+    "sub": "2002–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2002,
+    "generations": [2002]
+  },
+  {
+    "label": "サクシード",
+    "sub": "派生 / プロボックス",
+    "category": "commercial",
+    "status": "discontinued",
+    "derivativeOf": "プロボックス",
+    "branchYear": 2002,
+    "generations": [2002]
+  },
+  {
+    "label": "コースター",
+    "sub": "1969–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2017,
+    "generations": [1969, 1982, 1993, 2017]
+  },
+  {
+    "label": "ジャパンタクシー",
+    "sub": "2017–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2017,
+    "generations": [2017]
+  },
+  {
+    "label": "コンフォート",
+    "sub": "1995–2018",
+    "category": "commercial",
+    "status": "discontinued",
+    "generations": [1995]
+  },
+  {
+    "label": "クラウンコンフォート",
+    "sub": "派生 / コンフォート",
+    "category": "commercial",
+    "status": "discontinued",
+    "derivativeOf": "コンフォート",
+    "branchYear": 1995,
+    "generations": [1995]
+  },
+  {
+    "label": "ハイメディック",
+    "sub": "派生 / ハイエース",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2017,
+    "derivativeOf": "ハイエース",
+    "branchYear": 1992,
+    "generations": [1992, 2006, 2017]
+  },
+  {
+    "label": "カムロード",
+    "sub": "派生 / ダイナ",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 1999,
+    "derivativeOf": "ダイナ",
+    "branchYear": 1999,
+    "generations": [1999]
+  },
+  {
+    "label": "デリボーイ",
+    "sub": "1989–1995",
+    "category": "commercial",
+    "status": "discontinued",
+    "generations": [1989]
+  },
+  {
+    "label": "クイックデリバリー",
+    "sub": "1982–2016",
+    "category": "commercial",
+    "status": "discontinued",
+    "generations": [1982, 1995]
+  },
+  {
+    "label": "スタウト",
+    "sub": "1960–1989",
+    "category": "commercial",
+    "status": "discontinued",
+    "generations": [1960, 1979]
+  },
+  {
+    "label": "ミニエース",
+    "sub": "1967–1975",
+    "category": "commercial",
+    "status": "discontinued",
+    "generations": [1967]
+  },
+  {
+    "label": "SORA",
+    "sub": "2018–現行",
+    "category": "commercial",
+    "status": "active",
+    "currentYear": 2018,
+    "generations": [2018]
+  }
+]

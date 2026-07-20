@@ -1,0 +1,47 @@
+[
+  {
+    "label": "ピクシス エポック",
+    "sub": "2012–現行",
+    "category": "kei",
+    "status": "active",
+    "currentYear": 2017,
+    "generations": [2012, 2017]
+  },
+  {
+    "label": "ピクシス バン",
+    "sub": "2011–現行",
+    "category": "kei",
+    "status": "active",
+    "currentYear": 2021,
+    "generations": [2011, 2021]
+  },
+  {
+    "label": "ピクシス トラック",
+    "sub": "2011–現行",
+    "category": "kei",
+    "status": "active",
+    "currentYear": 2014,
+    "generations": [2011, 2014]
+  },
+  {
+    "label": "ピクシス スペース",
+    "sub": "2011–2017",
+    "category": "kei",
+    "status": "discontinued",
+    "generations": [2011]
+  },
+  {
+    "label": "ピクシス メガ",
+    "sub": "2015–2022",
+    "category": "kei",
+    "status": "discontinued",
+    "generations": [2015]
+  },
+  {
+    "label": "ピクシス ジョイ",
+    "sub": "2016–2023",
+    "category": "kei",
+    "status": "discontinued",
+    "generations": [2016]
+  }
+]
